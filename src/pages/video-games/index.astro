@@ -1,0 +1,153 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Video Games"
+  description="CAPP GAMES video games — free to play in any browser, no download required. Strategy, fantasy, and more."
+>
+  <section class="page">
+    <div class="container">
+      <div class="section-header">
+        <a href="/" class="back-link">&#8592; Home</a>
+        <h1>Video Games</h1>
+        <div class="gold-divider"></div>
+        <p class="page-sub">Free to play. No download. Just click and go.</p>
+      </div>
+
+      <div class="game-grid">
+
+        <!-- Fantasy Arena -->
+        <a href="/video-games/fantasy-arena" class="card game-card">
+          <div class="card-img-wrap card-img-dark">
+            <div class="fa-preview">
+              <span class="fa-icon">&#9876;&#65039;</span>
+              <span class="fa-label">Fantasy Arena</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="tag tag-blue">Free Browser Game</span>
+            </div>
+            <h2>Auto-Chess: Fantasy Arena</h2>
+            <p class="card-desc">
+              An auto-chess strategy game where you summon heroes via gacha, deploy them
+              on a hex grid, and watch automated battles unfold across escalating rounds.
+              Survive long enough to face the secret end-game.
+            </p>
+            <div class="card-meta">
+              <span>Free</span>
+              <span class="dot">&#183;</span>
+              <span>Single-Player</span>
+              <span class="dot">&#183;</span>
+              <span>Top 25 Scoreboard</span>
+            </div>
+            <span class="card-cta">Play Free &rarr;</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page {
+    padding: 3rem 0 5rem;
+  }
+
+  .page-sub {
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    margin: 0;
+  }
+
+  .game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 640px) {
+    .game-grid { grid-template-columns: 1fr; }
+  }
+
+  .game-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .card-img-wrap {
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+
+  .card-img-dark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0a0a15, #1a1a30);
+  }
+
+  .fa-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .fa-icon { font-size: 3.5rem; }
+  .fa-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+  }
+
+  .card-top { margin-bottom: 0.25rem; }
+
+  .card-body h2 {
+    font-size: 1.4rem;
+    color: var(--text);
+  }
+
+  .card-desc {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin: 0;
+    flex: 1;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    font-size: 0.82rem;
+    color: #5baff5;
+    font-weight: 500;
+  }
+
+  .dot { opacity: 0.4; }
+
+  .card-cta {
+    color: var(--gold);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-top: 0.5rem;
+  }
+</style>

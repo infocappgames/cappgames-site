@@ -1,0 +1,293 @@
+---
+import { getSession } from 'auth-astro/server';
+import Layout from '../layouts/Layout.astro';
+import { db } from '../db/index';
+import { users } from '../db/schema';
+import { desc } from 'drizzle-orm';
+
+const session = await getSession(Astro.request);
+const role = (session?.user as any)?.role;
+
+if (!session || role !== 'Owner') {
+  return Astro.redirect('/');
+}
+
+const allUsers = await db.select().from(users).orderBy(desc(users.createdAt));
+
+const roleTag: Record<string, string> = {
+  Owner:     'tag-gold',
+  Moderator: 'tag-purple',
+  Writer:    'tag-blue',
+  Player:    'tag-gray',
+};
+
+const roleAvatar: Record<string, string> = {
+  Owner:     '/images/OwnerLogo_temp01.png',
+  Moderator: '/images/ModeratorLogo01.png',
+};
+---
+
+<Layout title="Admin Panel" description="CAPP GAMES admin panel — manage user roles.">
+
+  <!-- ─── Page Header ─────────────────────────────────────────── -->
+  <section class="page-header">
+    <div class="container">
+      <h1><span class="gold">Admin</span> Panel</h1>
+      <div class="gold-divider"></div>
+      <p class="page-sub">{allUsers.length} registered user{allUsers.length !== 1 ? 's' : ''}</p>
+    </div>
+  </section>
+
+  <!-- ─── Users Table ──────────────────────────────────────────── -->
+  <section class="admin-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>User Management</h2>
+        <div class="gold-divider"></div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="users-table">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Joined</th>
+              <th>Change Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            {allUsers.map(u => {
+              const avatar = roleAvatar[u.role] ?? '/images/UserLogoBasic01.png';
+              const tag = roleTag[u.role] ?? 'tag-gray';
+              const joined = u.createdAt
+                ? new Date((u.createdAt as unknown as number) * 1000).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+                : '—';
+              return (
+                <tr data-email={u.email}>
+                  <td class="td-user">
+                    <img src={avatar} alt="" class="table-avatar" />
+                    <span class="table-name">{u.name ?? '—'}</span>
+                  </td>
+                  <td class="td-email">{u.email}</td>
+                  <td><span class={`tag ${tag} role-badge`}>{u.role}</span></td>
+                  <td class="td-date">{joined}</td>
+                  <td class="td-actions">
+                    <select class="role-select" data-email={u.email} data-current={u.role}>
+                      {['Owner', 'Moderator', 'Writer', 'Player'].map(r => (
+                        <option value={r} selected={r === u.role}>{r}</option>
+                      ))}
+                    </select>
+                    <button class="btn-apply" data-email={u.email}>Apply</button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      <p id="status-msg" class="status-msg" aria-live="polite"></p>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* ─── Page Header ─────────────────────────────────────────── */
+  .page-header {
+    padding: 4rem 0 2rem;
+    text-align: center;
+    background: radial-gradient(ellipse at 50% 0%, rgba(245,192,0,0.06) 0%, transparent 70%);
+  }
+  .page-header h1 { margin-bottom: 0; }
+  .gold { color: var(--gold); }
+
+  .page-sub {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+  }
+
+  /* ─── Admin Section ───────────────────────────────────────── */
+  .admin-section {
+    padding: 2rem 0 5rem;
+  }
+
+  /* ─── Table ───────────────────────────────────────────────── */
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  .users-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  .users-table thead {
+    background: rgba(245,192,0,0.06);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .users-table th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+
+  .users-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+
+  .users-table tbody tr:last-child td { border-bottom: none; }
+
+  .users-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+
+  /* ─── Avatar + name cell ──────────────────────────────────── */
+  .td-user {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-width: 160px;
+  }
+
+  .table-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .table-name {
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .td-email {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+  }
+
+  .td-date {
+    color: var(--text-dim);
+    font-size: 0.82rem;
+    white-space: nowrap;
+  }
+
+  /* ─── Role badge ──────────────────────────────────────────── */
+  .role-badge { white-space: nowrap; }
+
+  /* ─── Actions ─────────────────────────────────────────────── */
+  .td-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+  }
+
+  .role-select {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 0.82rem;
+    padding: 0.3rem 0.5rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .role-select:focus { outline: none; border-color: var(--gold); }
+
+  .btn-apply {
+    background: rgba(245,192,0,0.12);
+    border: 1px solid rgba(245,192,0,0.35);
+    border-radius: 6px;
+    color: var(--gold);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.3rem 0.7rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .btn-apply:hover { background: rgba(245,192,0,0.22); border-color: var(--gold); }
+  .btn-apply:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* ─── Status message ──────────────────────────────────────── */
+  .status-msg {
+    margin-top: 1rem;
+    font-size: 0.88rem;
+    min-height: 1.4em;
+    color: var(--text-dim);
+  }
+  .status-msg.ok  { color: #4ade80; }
+  .status-msg.err { color: #f87171; }
+
+  /* ─── Responsive ──────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .td-email { display: none; }
+    .td-date  { display: none; }
+  }
+</style>
+
+<script>
+  const statusEl = document.getElementById('status-msg')!;
+
+  function showStatus(msg: string, type: 'ok' | 'err') {
+    statusEl.textContent = msg;
+    statusEl.className = `status-msg ${type}`;
+    setTimeout(() => {
+      statusEl.textContent = '';
+      statusEl.className = 'status-msg';
+    }, 3500);
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.btn-apply').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const email = btn.dataset.email!;
+      const select = document.querySelector<HTMLSelectElement>(`.role-select[data-email="${CSS.escape(email)}"]`)!;
+      const newRole = select.value;
+
+      btn.disabled = true;
+      try {
+        const res = await fetch('/api/admin/update-role', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, role: newRole }),
+        });
+        if (res.ok) {
+          // Update badge in same row
+          const tagMap: Record<string, string> = {
+            Owner: 'tag-gold', Moderator: 'tag-purple', Writer: 'tag-blue', Player: 'tag-gray',
+          };
+          const row = btn.closest('tr')!;
+          const badge = row.querySelector('.role-badge')!;
+          badge.textContent = newRole;
+          badge.className = `tag role-badge ${tagMap[newRole] ?? 'tag-gray'}`;
+          select.dataset.current = newRole;
+          showStatus(`Role updated to ${newRole} for ${email}`, 'ok');
+        } else {
+          const data = await res.json();
+          showStatus(data.error ?? 'Update failed', 'err');
+        }
+      } catch {
+        showStatus('Network error', 'err');
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  });
+</script>

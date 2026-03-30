@@ -1,0 +1,171 @@
+<!-- Backdrop -->
+<div id="login-modal-backdrop" class="modal-backdrop" aria-hidden="true"></div>
+
+<!-- Modal -->
+<div id="login-modal" class="modal" role="dialog" aria-modal="true" aria-label="Sign in">
+  <button id="login-modal-close" class="modal-close" aria-label="Close">&times;</button>
+
+  <div class="modal-logo">
+    <img src="/images/capp-logo.png" alt="CAPP GAMES" />
+  </div>
+
+  <h2 class="modal-title">Sign in or Create Account</h2>
+  <p class="modal-subtitle">New? Your account is created automatically on first sign in.</p>
+
+  <div class="modal-providers">
+    <button id="google-signin-btn" class="btn-google" type="button">
+      <svg width="18" height="18" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.35-8.16 2.35-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+      </svg>
+      Continue with Google
+    </button>
+  </div>
+</div>
+
+<script>
+  const backdrop = document.getElementById('login-modal-backdrop');
+  const modal = document.getElementById('login-modal');
+  const closeBtn = document.getElementById('login-modal-close');
+  const openBtn = document.getElementById('nav-signin-btn');
+  const googleBtn = document.getElementById('google-signin-btn');
+
+  function openModal() {
+    backdrop?.classList.add('active');
+    modal?.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    backdrop?.classList.remove('active');
+    modal?.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  openBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    openModal();
+  });
+
+  closeBtn?.addEventListener('click', closeModal);
+  backdrop?.addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // Open Google OAuth — popup on desktop, redirect on mobile
+  googleBtn?.addEventListener('click', () => {
+    closeModal();
+
+    if (window.innerWidth < 600) {
+      // Mobile: redirect to sign-in page directly
+      window.location.href = '/auth/signin-popup';
+      return;
+    }
+
+    const width = 500;
+    const height = 620;
+    const left = Math.round(window.screenX + (window.outerWidth - width) / 2);
+    const top = Math.round(window.screenY + (window.outerHeight - height) / 2);
+
+    const popup = window.open(
+      '/auth/signin-popup',
+      'google-signin-popup',
+      `width=${width},height=${height},left=${left},top=${top},toolbar=no,menubar=no,scrollbars=yes`
+    );
+
+    // When popup closes, reload page to pick up the session
+    const timer = setInterval(() => {
+      if (popup?.closed) {
+        clearInterval(timer);
+        window.location.reload();
+      }
+    }, 500);
+  });
+</script>
+
+<style>
+  .modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 200;
+    backdrop-filter: blur(4px);
+  }
+  .modal-backdrop.active { display: block; }
+
+  .modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 201;
+    background: #141414;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  .modal.active { display: block; }
+
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--text); }
+
+  .modal-logo img {
+    height: 48px;
+    width: auto;
+    margin-bottom: 1rem;
+  }
+
+  .modal-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .modal-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-bottom: 2rem;
+  }
+
+  .btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: #fff;
+    color: #222;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    font-family: inherit;
+  }
+  .btn-google:hover { opacity: 0.85; }
+</style>

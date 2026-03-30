@@ -1,0 +1,20 @@
+---
+// This page loads inside the popup and auto-submits the Google OAuth form with CSRF token
+---
+<html>
+<body>
+  <p style="color:#888;font-family:sans-serif;text-align:center;margin-top:3rem;">Redirecting to Google...</p>
+  <form id="f" method="POST" action="/api/auth/signin/google">
+    <input type="hidden" name="callbackUrl" value="/auth/close-popup" />
+    <input type="hidden" name="csrfToken" id="csrf" value="" />
+  </form>
+  <script>
+    fetch('/api/auth/csrf')
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById('csrf').value = data.csrfToken;
+        document.getElementById('f').submit();
+      });
+  </script>
+</body>
+</html>

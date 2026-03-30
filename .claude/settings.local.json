@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -r \"cookie\\\\|consent\\\\|gdpr\\\\|privacy\" /d/DocumentosD/CAPPGAMES/WEB/cappgames-site/dist --include=*.html --include=*.js)",
+      "Bash(ls -la \"D:/DocumentosD/CAPPGAMES/WEB/cappgames-site/.env\"*)",
+      "Bash(npm install:*)"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+---
+// After OAuth completes:
+// - In a popup: close the window, parent reloads
+// - On mobile (full redirect): go to homepage
+---
+<script>
+  if (window.opener) {
+    window.close();
+  } else {
+    window.location.replace('/');
+  }
+</script>

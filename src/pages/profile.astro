@@ -1,0 +1,192 @@
+---
+import { getSession } from 'auth-astro/server';
+import Layout from '../layouts/Layout.astro';
+
+const session = await getSession(Astro.request);
+if (!session) {
+  return Astro.redirect('/');
+}
+
+const user = session.user;
+const role = (user as any)?.role ?? 'Player';
+
+const roleTag: Record<string, string> = {
+  Owner:     'tag-gold',
+  Moderator: 'tag-purple',
+  Writer:    'tag-blue',
+  Player:    'tag-gray',
+};
+const tagClass = roleTag[role] ?? 'tag-gray';
+
+const roleAvatar: Record<string, string> = {
+  Owner:     '/images/OwnerLogo_temp01.png',
+  Moderator: '/images/ModeratorLogo01.png',
+  Player:    '/images/UserLogoBasic01.png',
+};
+const defaultAvatar = roleAvatar[role] ?? '/images/UserLogoBasic01.png';
+---
+
+<Layout title="Profile" description="Your CAPP GAMES account profile.">
+
+  <!-- ─── Page Header ─────────────────────────────────────────── -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Your <span class="gold">Profile</span></h1>
+      <div class="gold-divider"></div>
+    </div>
+  </section>
+
+  <!-- ─── Profile Card ─────────────────────────────────────────── -->
+  <section class="profile-section">
+    <div class="container">
+      <div class="profile-card">
+        <div class="avatar-wrap">
+          <img
+            src={defaultAvatar}
+            alt={user?.name ?? 'Avatar'}
+            class="profile-avatar"
+          />
+        </div>
+        <h2 class="profile-name">{user?.name}</h2>
+        <p class="profile-email">{user?.email}</p>
+        <span class={`tag ${tagClass}`}>{role}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Coming Soon ──────────────────────────────────────────── -->
+  <section class="coming-soon">
+    <div class="container">
+      <div class="section-header">
+        <h2>Coming Soon</h2>
+        <div class="gold-divider"></div>
+        <p class="page-sub">More features will appear here as the platform grows.</p>
+      </div>
+
+      <div class="placeholder-grid">
+        <div class="placeholder-card">
+          <div class="placeholder-icon">&#127942;</div>
+          <h3>Game Stats</h3>
+          <p>Your scores, win/loss records, and ranking across all CAPP GAMES titles.</p>
+        </div>
+        <div class="placeholder-card">
+          <div class="placeholder-icon">&#128717;</div>
+          <h3>Purchase History</h3>
+          <p>Cosmetics, battle passes, and other items you've unlocked.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* ─── Page Header ─────────────────────────────────────────── */
+  .page-header {
+    padding: 4rem 0 2rem;
+    text-align: center;
+    background: radial-gradient(ellipse at 50% 0%, rgba(245,192,0,0.06) 0%, transparent 70%);
+  }
+  .page-header h1 { margin-bottom: 0; }
+  .gold { color: var(--gold); }
+
+  /* ─── Profile Section ─────────────────────────────────────── */
+  .profile-section {
+    padding: 2rem 0 4rem;
+  }
+
+  .profile-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  .avatar-wrap {
+    margin-bottom: 0.5rem;
+  }
+
+  .profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--gold);
+  }
+
+  .profile-name {
+    font-size: 1.4rem;
+    margin: 0;
+  }
+
+  .profile-email {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    margin: 0;
+  }
+
+  /* ─── Tag purple (new variant for Moderator) ──────────────── */
+  :global(.tag-purple) {
+    background: rgba(160, 100, 240, 0.15);
+    color: #c084fc;
+    border: 1px solid rgba(160, 100, 240, 0.3);
+  }
+
+  /* ─── Coming Soon ─────────────────────────────────────────── */
+  .coming-soon {
+    padding: 1rem 0 5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .page-sub {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-top: -0.5rem;
+  }
+
+  .placeholder-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .placeholder-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-align: center;
+    opacity: 0.45;
+  }
+
+  .placeholder-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .placeholder-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--gold);
+  }
+
+  .placeholder-card p {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 640px) {
+    .placeholder-grid { grid-template-columns: 1fr; }
+  }
+</style>

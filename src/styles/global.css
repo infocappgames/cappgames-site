@@ -1,0 +1,162 @@
+/* ─── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
+
+/* ─── CSS Variables ─────────────────────────────────────────────── */
+:root {
+  --bg:       #0d0d0d;
+  --bg-alt:   #111111;
+  --card-bg:  #161616;
+  --gold:     #F5C000;
+  --gold-dim: #c49a00;
+  --text:     #e8e8e8;
+  --text-dim: #999999;
+  --border:   #2a2a2a;
+  --radius:   8px;
+  --max-w:    1200px;
+}
+
+/* ─── Reset ─────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* ─── Typography ─────────────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; }
+h2 { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 700; }
+h3 { font-size: clamp(1.2rem, 2.5vw, 1.8rem); font-weight: 700; }
+
+p { margin-bottom: 1rem; }
+a { color: var(--gold); text-decoration: none; transition: opacity 0.2s; }
+a:hover { opacity: 0.8; }
+
+/* ─── Utility ────────────────────────────────────────────────────── */
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.gold { color: var(--gold); }
+.text-dim { color: var(--text-dim); }
+
+.gold-divider {
+  width: 80px;
+  height: 3px;
+  background: var(--gold);
+  margin: 1.5rem auto;
+}
+
+/* ─── Buttons ────────────────────────────────────────────────────── */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius);
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: #000;
+}
+.btn-gold:hover {
+  background: var(--gold-dim);
+  opacity: 1;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(245, 192, 0, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--gold);
+  border: 2px solid var(--gold);
+}
+.btn-outline:hover {
+  background: var(--gold);
+  color: #000;
+  opacity: 1;
+}
+
+/* ─── Cards ──────────────────────────────────────────────────────── */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+}
+
+/* ─── Tags / Badges ──────────────────────────────────────────────── */
+.tag {
+  display: inline-block;
+  padding: 0.2rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.tag-gold   { background: rgba(245,192,0,0.15); color: var(--gold); border: 1px solid rgba(245,192,0,0.3); }
+.tag-blue   { background: rgba(40,120,200,0.15); color: #5baff5; border: 1px solid rgba(40,120,200,0.3); }
+.tag-gray   { background: rgba(150,150,150,0.1); color: var(--text-dim); border: 1px solid var(--border); }
+
+/* ─── Section headers ────────────────────────────────────────────── */
+.section-header {
+  text-align: center;
+  padding: 4rem 0 2rem;
+}
+
+.section-header h2 {
+  color: var(--text);
+}
+
+/* ─── Back link ──────────────────────────────────────────────────── */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--gold); opacity: 1; }

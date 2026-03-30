@@ -1,0 +1,23 @@
+{
+  "name": "project0005",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.1",
+    "@astrojs/vercel": "^10.0.2",
+    "@auth/core": "^0.37.4",
+    "@libsql/client": "^0.17.2",
+    "astro": "^6.0.8",
+    "auth-astro": "^4.2.0",
+    "drizzle-orm": "^0.45.1"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.31.10"
+  }
+}

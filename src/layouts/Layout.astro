@@ -1,0 +1,88 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  jsonLd?: object;
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://cappgames.com');
+
+const {
+  title,
+  description = 'CAPP GAMES — Games born from imagination. Browser games and board games by Carlos Pineda.',
+  ogImage = '/images/capp-logo.png',
+  jsonLd,
+} = Astro.props;
+
+const orgJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'CAPP GAMES',
+  url: 'https://cappgames.com',
+  logo: 'https://cappgames.com/images/capp-logo.png',
+  description: 'Indie game studio creating free browser games and published board games.',
+  sameAs: [
+    'https://www.instagram.com/cappgames/',
+    'https://discord.gg/8C9Z48nBRy',
+    'https://www.youtube.com/@CappBoardGames',
+    'https://boardgamegeek.com/profile/cappgames',
+    'https://www.linkedin.com/in/carlospinedap/',
+  ],
+};
+
+const fullTitle = `${title} | CAPP GAMES`;
+const ogImageURL = new URL(ogImage, Astro.site ?? 'https://cappgames.com').href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL.href} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/capp-logo.png" />
+
+    <!-- Open Graph (Facebook, Discord, WhatsApp, etc.) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:site_name" content="CAPP GAMES" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#0d0d0d" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(orgJsonLd)} />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+
+    <!-- Font preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <Nav />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

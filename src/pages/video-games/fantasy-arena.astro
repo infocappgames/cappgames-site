@@ -1,0 +1,276 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoGame',
+  name: 'Auto-Chess: Fantasy Arena',
+  description: 'Free browser strategy game. Summon heroes, deploy them on a hex grid, and conquer The Abyss.',
+  url: 'https://cappgames.com/video-games/fantasy-arena',
+  image: 'https://cappgames.com/images/fantasy-arena-banner.png',
+  gamePlatform: 'Web Browser',
+  applicationCategory: 'Game',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  publisher: { '@type': 'Organization', name: 'CAPP GAMES' },
+  author: { '@type': 'Person', name: 'Andrés Pineda' },
+};
+---
+
+<Layout
+  title="Auto-Chess: Fantasy Arena"
+  description="Auto-Chess: Fantasy Arena — free browser strategy game by CAPP GAMES. Summon heroes, deploy on a hex grid, and conquer The Abyss. No download required."
+  ogImage="/images/fantasy-arena-banner.png"
+  jsonLd={jsonLd}
+>
+  <!-- ─── Hero ─────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <img src="/images/fantasy-arena-banner.png" alt="" class="hero-banner-img" />
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content container">
+      <a href="/video-games" class="back-link">&#8592; Video Games</a>
+      <div class="hero-badge">Free Browser Game</div>
+      <h1>Auto-Chess:<br /><span class="gold">Fantasy Arena</span></h1>
+      <p class="hero-desc">
+        Summon powerful heroes through a gacha system, deploy them on a hex grid, and watch
+        automated battles unfold. Progress through rounds of escalating challenge — monsters,
+        hybrid bosses, and the terrifying secret end-game: <strong>The Abyss</strong>.
+      </p>
+      <a
+        href="https://fantasy-arena-iota.vercel.app"
+        target="_blank"
+        rel="noopener"
+        class="btn btn-gold play-btn"
+      >
+        &#9658; Play Now — Free
+      </a>
+    </div>
+  </section>
+
+  <!-- ─── Stats ─────────────────────────────────────────────── -->
+  <div class="stats-bar">
+    <div class="container stats-inner">
+      <div class="stat">
+        <span class="stat-icon">&#128176;</span>
+        <span class="stat-label">Free to Play</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-icon">&#127760;</span>
+        <span class="stat-label">Browser — No Install</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-icon">&#129490;</span>
+        <span class="stat-label">Single-Player</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-icon">&#127942;</span>
+        <span class="stat-label">Top 25 Scoreboard</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Features ─────────────────────────────────────────── -->
+  <section class="features">
+    <div class="container">
+      <div class="section-header">
+        <h2>How It Works</h2>
+        <div class="gold-divider"></div>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">&#127915;</div>
+          <h3>Gacha Summoning</h3>
+          <p>Spend gold to summon from 5 hero unit types, each with unique abilities and synergies.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#9900;</div>
+          <h3>Hex Grid Tactics</h3>
+          <p>Position your heroes strategically on a hex battlefield. Placement determines everything.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#9889;</div>
+          <h3>Auto-Battle</h3>
+          <p>Watch your army fight automatically — the strategy happens in the prep phase, not mid-fight.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128565;</div>
+          <h3>The Abyss</h3>
+          <p>Survive long enough to face the secret end-game. Few make it. Fewer still conquer it.</p>
+        </div>
+      </div>
+
+      <div class="play-cta">
+        <a
+          href="https://fantasy-arena-iota.vercel.app"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-gold"
+        >
+          Open Fantasy Arena
+        </a>
+        <p class="play-note">No account required. Runs in any modern browser.</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* ─── Hero ───────────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    padding: 5rem 0 4rem;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 65%;
+    display: block;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(10,10,10,0.82) 40%, rgba(10,10,10,0.3) 100%),
+      linear-gradient(to top, rgba(10,10,10,0.6) 0%, transparent 40%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 0.3rem 0.9rem;
+    background: rgba(91,175,245,0.12);
+    color: #5baff5;
+    border: 1px solid rgba(91,175,245,0.3);
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero h1 {
+    margin-bottom: 1.25rem;
+    line-height: 1.15;
+  }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    line-height: 1.75;
+    max-width: 580px;
+    margin-bottom: 2rem;
+  }
+
+  .play-btn {
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+  }
+
+  /* ─── Stats bar ──────────────────────────────────────────── */
+  .stats-bar {
+    background: var(--card-bg);
+    border-top: 1px solid rgba(91,175,245,0.4);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+  }
+
+  .stats-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+  }
+
+  .stat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .stat-icon { font-size: 1.1rem; }
+  .stat-label { font-size: 0.9rem; font-weight: 500; }
+  .stat-divider {
+    width: 1px;
+    height: 20px;
+    background: var(--border);
+  }
+
+  /* ─── Features ───────────────────────────────────────────── */
+  .features {
+    padding: 2rem 0 5rem;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+  }
+
+  .feature-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .feature-card:hover { border-color: var(--gold); }
+
+  .feature-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--gold);
+  }
+
+  .feature-card p {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* Play CTA */
+  .play-cta {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .play-note {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    margin: 0;
+  }
+
+  @media (max-width: 600px) {
+    .stat-divider { display: none; }
+  }
+</style>

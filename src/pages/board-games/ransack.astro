@@ -1,0 +1,491 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Game',
+  name: 'Ransack',
+  description: 'A medieval-fantasy card game for 3–6 players where crafty thieves compete to escape a dungeon with the most treasure.',
+  url: 'https://cappgames.com/board-games/ransack',
+  image: 'https://cappgames.com/images/ransack-cover.png',
+  publisher: { '@type': 'Organization', name: 'CAPP GAMES' },
+  author: { '@type': 'Person', name: 'Andrés Pineda' },
+  numberOfPlayers: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 6 },
+  gameLocation: 'Tabletop',
+};
+---
+
+<Layout
+  title="Ransack"
+  description="Ransack — a medieval-fantasy card game for 3–6 players. Crafty thieves compete to escape a dungeon with the most treasure. Published board game by CAPP GAMES."
+  ogImage="/images/ransack-cover.png"
+  jsonLd={jsonLd}
+>
+  <!-- ─── Hero ─────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="/images/ransack-banner.png" alt="" class="hero-bg-img" aria-hidden="true" />
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content container">
+      <a href="/board-games" class="back-link">&#8592; Board Games</a>
+      <div class="hero-badge">Published Board Game</div>
+    </div>
+  </section>
+
+  <!-- ─── Stats bar ─────────────────────────────────────────── -->
+  <div class="stats-bar">
+    <div class="container stats-inner">
+      <div class="stat">
+        <span class="stat-icon">&#128101;</span>
+        <span class="stat-label">3 – 6 Players</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-icon">&#9200;</span>
+        <span class="stat-label">20 – 30 min</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-icon">&#127774;</span>
+        <span class="stat-label">Age 10+</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-icon">&#128218;</span>
+        <span class="stat-label">90 Cards</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Main content ──────────────────────────────────────── -->
+  <section class="content">
+    <div class="container content-grid">
+
+      <!-- Description -->
+      <div class="desc-col">
+        <h2>About Ransack</h2>
+        <div class="gold-divider" style="margin: 1rem 0;"></div>
+
+        <p>
+          Ransack is a card game where players become crafty thieves trying to escape
+          a dungeon with the most treasure. Use your cards to dodge monsters,
+          steal from rival thieves, and scheme your way to victory.
+        </p>
+        <p>
+          Every round is a tense gamble — hoard too long and a Goblin ambush drains your fortune.
+          Strike too early and another thief pockets your gold. The thief with the greatest
+          wealth when the dust settles wins.
+        </p>
+        <p>
+          90 illustrated medieval-fantasy cards: weapons, cunning objects, monsters,
+          and double-sided Treasure cards. Fast setup, easy to learn — great for families,
+          game nights, and anyone who loves a little friendly betrayal.
+        </p>
+
+        <div class="btn-group">
+          <a
+            href="https://boardgamegeek.com/boardgame/406870/ransack"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-gold"
+          >
+            View on BoardGameGeek
+          </a>
+          <a
+            href="https://www.youtube.com/@CappBoardGames"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-outline"
+          >
+            &#9654; How to Play
+          </a>
+          <span class="btn btn-outline btn-disabled" title="Purchase link coming soon">
+            Buy (Coming Soon)
+          </span>
+          <a
+            href="https://www.instagram.com/ransack_game/"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-ig"
+          >
+            IG @ransack_game
+          </a>
+        </div>
+      </div>
+
+      <!-- Photo -->
+      <div class="photo-col">
+        <img
+          src="/images/ransack-photo.jpg"
+          alt="Ransack cards spread out on a table"
+          class="game-photo"
+        />
+        <p class="photo-caption">Cards from a live game session</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── How It's Played ─────────────────────────────────────── -->
+  <section class="how-to-play">
+    <div class="container">
+      <div class="section-header">
+        <h2>How It's Played</h2>
+        <div class="gold-divider"></div>
+      </div>
+
+      <div class="htp-grid">
+        <div class="htp-card">
+          <div class="htp-icon">&#128176;</div>
+          <h3>Grab Treasure</h3>
+          <p>All players split the treasure equally at the start. Use action cards to steal more from rivals, defend what's yours, or lose it all to a well-timed attack.</p>
+        </div>
+        <div class="htp-card">
+          <div class="htp-icon">&#9876;</div>
+          <h3>Play Action Cards</h3>
+          <p>Use green weapon cards to attack, blue cards to defend, and cunning objects to outsmart rivals. Every card type has its own strategic role.</p>
+        </div>
+        <div class="htp-card">
+          <div class="htp-icon">&#128126;</div>
+          <h3>Face Monsters</h3>
+          <p>Monsters block your path and steal your treasure if you can't defeat them. Other players can even drop higher-level monsters on you.</p>
+        </div>
+        <div class="htp-card">
+          <div class="htp-icon">&#127942;</div>
+          <h3>Escape &amp; Win</h3>
+          <p>When the deck runs out, the final round begins. The thief who escapes with the most treasure wins. No second chances — every decision counts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Gallery placeholder ─────────────────────────────────── -->
+  <!-- TODO: Add photo gallery when new images are ready (box, people playing, etc.) -->
+
+  <!-- ─── FAQ ─────────────────────────────────────────────────── -->
+  <section class="faq">
+    <div class="container">
+      <div class="section-header">
+        <h2>Frequently Asked Questions</h2>
+        <div class="gold-divider"></div>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary class="faq-question">Can a player have 2 or more monsters in front of them?</summary>
+          <div class="faq-answer">
+            <p>No, each player can only have one (1) monster in front at a time. However, other players can place monsters of a higher level than the one you already have — the new monster replaces the current one, and the replaced monster goes to the discard pile.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">When does a monster steal my treasure?</summary>
+          <div class="faq-answer">
+            <p>At the end of your turn. If you have no more actions to use cards and you still can't defeat the monster in front of you, it steals your treasure when your turn ends.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">Can I block green weapon attacks with any blue card?</summary>
+          <div class="faq-answer">
+            <p>No. The actions each card can perform are written in their text. Specifically, defending against green cards can only be done with blue cards whose text is accompanied by the &#9889; symbol.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">Can I block a green weapon with another green weapon?</summary>
+          <div class="faq-answer">
+            <p>No. Green weapons are attack cards only. Defending against green weapon attacks can only be done with specific blue cards — look for the &#9889; symbol in the card text.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">Can I stack weapons to make a stronger attack?</summary>
+          <div class="faq-answer">
+            <p>No. Each action is resolved separately — you cannot combine card values. Play one card, resolve its effect, then play the next.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">If it's the last round and an action sends a card to the deck, does the round restart?</summary>
+          <div class="faq-answer">
+            <p>No. During the last round, any cards that would go back into the deck are discarded instead — there is no longer a deck to return them to.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">Can I play Ransack with more than 6 people?</summary>
+          <div class="faq-answer">
+            <p>Yes! For large groups, grab 2 copies of Ransack and up to 12 people can play. The one rule change: only use one set of level 3 monsters — randomly draw 6 of the 8 level-three monsters and shuffle them into the deck. The remaining 2 stay hidden outside the game.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-question">Can only 2 people play Ransack?</summary>
+          <div class="faq-answer">
+            <p>We don't recommend it. In a two-person match, the basic rules can leave the game very unbalanced, which wouldn't be fun for either player. Ransack shines with 3–6 players.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* ─── Hero ───────────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    height: 65vh;
+    min-height: 380px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(13,13,13,0.15) 0%,
+      rgba(13,13,13,0.25) 60%,
+      rgba(13,13,13,0.92) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding-top: 2rem;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 0.3rem 0.9rem;
+    background: rgba(245,192,0,0.12);
+    color: var(--gold);
+    border: 1px solid rgba(245,192,0,0.3);
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ─── Stats bar ──────────────────────────────────────────── */
+  .stats-bar {
+    background: var(--card-bg);
+    border-top: 1px solid var(--gold);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+  }
+
+  .stats-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+  }
+
+  .stat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .stat-icon { font-size: 1.1rem; }
+  .stat-label { font-size: 0.9rem; font-weight: 500; color: var(--text); }
+
+  .stat-divider {
+    width: 1px;
+    height: 20px;
+    background: var(--border);
+  }
+
+  /* ─── Content ────────────────────────────────────────────── */
+  .content {
+    padding: 3rem 0 5rem;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .desc-col h2 {
+    margin-top: 1rem;
+  }
+
+  .desc-col p {
+    color: var(--text-dim);
+    line-height: 1.75;
+  }
+
+  .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .btn-disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  .btn-ig {
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+  }
+  .btn-ig:hover {
+    color: var(--text);
+    border-color: rgba(255,255,255,0.25);
+    opacity: 1;
+  }
+
+  /* Photo */
+  .photo-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .game-photo {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    object-fit: cover;
+  }
+
+  .photo-caption {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    text-align: center;
+    margin: 0;
+  }
+
+  /* ─── How It's Played ────────────────────────────────────── */
+  .how-to-play {
+    padding: 1rem 0 4rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .htp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .htp-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .htp-card:hover { border-color: var(--gold); }
+
+  .htp-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .htp-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--gold);
+  }
+
+  .htp-card p {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ─── FAQ ───────────────────────────────────────────────── */
+  .faq {
+    padding: 1rem 0 5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .faq-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .faq-item[open] { border-color: var(--gold); }
+
+  .faq-question {
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .faq-question::-webkit-details-marker { display: none; }
+
+  .faq-question::after {
+    content: '+';
+    font-size: 1.4rem;
+    color: var(--gold);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+
+  .faq-item[open] .faq-question::after {
+    content: '−';
+  }
+
+  .faq-answer {
+    padding: 0 1.5rem 1.25rem;
+  }
+
+  .faq-answer p {
+    color: var(--text-dim);
+    line-height: 1.75;
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 600px) {
+    .content-grid {
+      grid-template-columns: 1fr;
+    }
+    .photo-col { order: -1; }
+    .stat-divider { display: none; }
+  }
+</style>

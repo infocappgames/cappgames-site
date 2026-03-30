@@ -1,0 +1,235 @@
+---
+const links = [
+  { label: 'Video Games', href: '/video-games' },
+  { label: 'Board Games', href: '/board-games' },
+  { label: 'About', href: '/about' },
+];
+---
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="/" class="nav-brand">
+      <img src="/images/capp-logo.png" alt="CAPP GAMES logo" class="nav-logo" />
+      <span class="nav-name">CAPP GAMES</span>
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="nav-links" role="list">
+      {links.map(link => (
+        <li><a href={link.href} class="nav-link">{link.label}</a></li>
+      ))}
+    </ul>
+
+    <!-- Mobile hamburger (CSS-only toggle via checkbox) -->
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+
+    <!-- Mobile menu -->
+    <ul class="nav-mobile" role="list">
+      {links.map(link => (
+        <li><a href={link.href} class="nav-link">{link.label}</a></li>
+      ))}
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(13, 13, 13, 0.95);
+    border-bottom: 1px solid #1e1e1e;
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-brand:hover { opacity: 1; }
+
+  .nav-logo {
+    height: 36px;
+    width: auto;
+  }
+
+  .nav-name {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+  }
+
+  /* Desktop links */
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    text-decoration: none;
+  }
+  .nav-link:hover { color: var(--gold); }
+  .nav-link-admin { color: var(--gold); }
+  .nav-link-admin:hover { opacity: 0.75; }
+
+  /* Hamburger / mobile */
+  .nav-toggle-input { display: none; }
+
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .nav-hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all 0.25s;
+  }
+
+  .nav-mobile {
+    display: none;
+  }
+
+  /* Auth */
+  .nav-auth { display: flex; align-items: center; }
+
+  .nav-user {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .nav-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--border);
+  }
+
+  .nav-user-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+  }
+  .nav-user-link:hover .nav-username { color: var(--gold); }
+  .nav-user-link:hover .nav-avatar { border-color: var(--gold); }
+
+  .nav-username {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    transition: color 0.2s;
+  }
+
+  .btn-sm {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .nav-mobile-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0.25rem 0;
+  }
+
+  .nav-mobile-user {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+  }
+
+  .nav-mobile-signout {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+    transition: color 0.2s;
+  }
+  .nav-mobile-signout:hover { color: var(--gold); }
+
+  .nav-mobile-signin {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 0;
+    color: var(--gold);
+  }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .nav-auth { display: none; }
+
+    .nav-hamburger { display: flex; }
+
+    .nav-mobile {
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: #111;
+      border-bottom: 1px solid var(--border);
+      list-style: none;
+      flex-direction: column;
+      padding: 1rem 1.5rem;
+      gap: 1rem;
+    }
+
+    /* Show mobile menu when checkbox is checked */
+    .nav-toggle-input:checked ~ .nav-mobile {
+      display: flex;
+    }
+
+    /* Animate hamburger to X */
+    .nav-toggle-input:checked ~ .nav-hamburger span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .nav-toggle-input:checked ~ .nav-hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+    .nav-toggle-input:checked ~ .nav-hamburger span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+</style>
+

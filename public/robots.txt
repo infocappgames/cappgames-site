@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /auth/
+Disallow: /profile
+Disallow: /admin
+
+Sitemap: https://cappgames.com/sitemap-index.xml

@@ -11,7 +11,7 @@ import Layout from '../../layouts/Layout.astro';
     <div class="teaser-content container">
       <a href="/board-games" class="back-link">&#8592; Board Games</a>
 
-      <div class="jelly-icon">&#129244;</div>
+      <img src="/images/jelly-fuse-banner.png" alt="Jelly Fuse" class="jelly-icon" />
 
       <div class="coming-tag">In Development</div>
 
@@ -75,7 +75,8 @@ import Layout from '../../layouts/Layout.astro';
   .back-link:hover { opacity: 1; color: #5baff5; }
 
   .jelly-icon {
-    font-size: clamp(4rem, 10vw, 7rem);
+    width: clamp(120px, 18vw, 200px);
+    height: auto;
     margin-bottom: 1.5rem;
     filter: drop-shadow(0 0 30px rgba(100,180,255,0.4));
     animation: float 4s ease-in-out infinite;

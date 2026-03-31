@@ -6,15 +6,6 @@ import Layout from '../layouts/Layout.astro';
   title="Home"
   description="CAPP GAMES — indie game studio creating free browser games and published board games. Play Auto-Chess: Fantasy Arena or grab Ransack for your game night."
 >
-  <!-- ─── Hero ─────────────────────────────────────────────── -->
-  <section class="hero">
-    <div class="hero-content">
-      <img src="/images/capp-logo.png" alt="CAPP GAMES" class="hero-logo" />
-      <h1 class="hero-title">CAPP GAMES</h1>
-      <p class="hero-tagline">Built by a player, for players.</p>
-    </div>
-  </section>
-
   <!-- ─── Products ─────────────────────────────────────────── -->
   <section class="products">
     <div class="container">
@@ -23,7 +14,58 @@ import Layout from '../layouts/Layout.astro';
         <div class="gold-divider"></div>
       </div>
 
-      <div class="product-grid">
+      <!-- Fantasy Arena — featured -->
+      <div class="card product-card product-card-featured">
+        <a href="/video-games/fantasy-arena" class="card-overlay-link" aria-label="View Auto-Chess: Fantasy Arena"></a>
+        <div class="featured-img-wrap fa-hex-card">
+          <svg class="fa-hex-svg" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="fa-bg" cx="50%" cy="50%" r="70%">
+                <stop offset="0%" stop-color="#0d1530"/>
+                <stop offset="100%" stop-color="#050b18"/>
+              </radialGradient>
+              <radialGradient id="fa-glow" cx="50%" cy="50%" r="40%">
+                <stop offset="0%" stop-color="rgba(91,175,245,0.12)"/>
+                <stop offset="100%" stop-color="rgba(91,175,245,0)"/>
+              </radialGradient>
+              <pattern id="hexgrid" x="25" y="0" width="150" height="86.6" patternUnits="userSpaceOnUse">
+                <polygon points="50,0 25,43.3 -25,43.3 -50,0 -25,-43.3 25,-43.3" fill="none" stroke="rgba(91,175,245,0.22)" stroke-width="1.5"/>
+                <polygon points="125,43.3 100,86.6 50,86.6 25,43.3 50,0 100,0" fill="none" stroke="rgba(91,175,245,0.22)" stroke-width="1.5"/>
+              </pattern>
+            </defs>
+            <rect width="600" height="200" fill="url(#fa-bg)"/>
+            <rect width="600" height="200" fill="url(#hexgrid)"/>
+            <rect width="600" height="200" fill="url(#fa-glow)"/>
+          </svg>
+          <img src="/images/fa-chest.png" class="fa-chest-img" alt="" />
+          <div class="fa-overlay-content">
+            <div class="fa-heroes">
+              <span>&#9876;&#65039;</span>
+              <span>&#129497;</span>
+              <span>&#127993;</span>
+              <span>&#128154;</span>
+              <span>&#128481;&#65039;</span>
+            </div>
+            <span class="fa-label">Auto-Chess: Fantasy Arena</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="featured-tags">
+            <span class="tag tag-blue">Browser Game</span>
+            <span class="tag tag-update">Major Update Coming</span>
+          </div>
+          <h3 class="featured-title">Auto-Chess: Fantasy Arena</h3>
+          <p class="card-desc">Free auto-chess strategy game. Summon heroes, build your board, conquer The Abyss.</p>
+          <p class="card-desc update-teaser">A major update is in the works — stay tuned for more info soon.</p>
+          <div class="featured-actions">
+            <a href="https://fantasy-arena-iota.vercel.app" target="_blank" rel="noopener" class="btn btn-gold play-now-btn">&#9658; Play Now</a>
+            <a href="/video-games/fantasy-arena" class="card-cta details-link">More Info &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Board games row -->
+      <div class="board-games-row">
 
         <!-- Ransack -->
         <a href="/board-games/ransack" class="card product-card">
@@ -35,28 +77,6 @@ import Layout from '../layouts/Layout.astro';
             <h3>Ransack</h3>
             <p class="card-desc">Steal, dodge monsters, and escape the dungeon with the most treasure.</p>
             <span class="card-cta">View Game &rarr;</span>
-          </div>
-        </a>
-
-        <!-- Fantasy Arena -->
-        <a href="/video-games/fantasy-arena" class="card product-card">
-          <div class="card-img-wrap card-img-dark">
-            <div class="fa-preview">
-              <div class="fa-heroes">
-                <span>&#9876;&#65039;</span>
-                <span>&#129497;</span>
-                <span>&#127993;</span>
-                <span>&#128154;</span>
-                <span>&#128481;&#65039;</span>
-              </div>
-              <span class="fa-label">Auto-Chess: Fantasy Arena</span>
-            </div>
-          </div>
-          <div class="card-body">
-            <span class="tag tag-blue">Browser Game</span>
-            <h3>Auto-Chess: Fantasy Arena</h3>
-            <p class="card-desc">Free auto-chess strategy game. Summon heroes, build your board, conquer The Abyss.</p>
-            <span class="card-cta">Play Free &rarr;</span>
           </div>
         </a>
 
@@ -77,6 +97,15 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
+  <!-- ─── Hero ─────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-content">
+      <img src="/images/capp-logo.png" alt="CAPP GAMES" class="hero-logo" />
+      <h1 class="hero-title">CAPP GAMES</h1>
+      <p class="hero-tagline">Built by a player, for players.</p>
+    </div>
+  </section>
+
   <!-- ─── Connect strip ────────────────────────────────────── -->
   <section class="connect">
     <div class="container connect-inner">
@@ -90,7 +119,7 @@ import Layout from '../layouts/Layout.astro';
         <a href="https://boardgamegeek.com/profile/cappgames" target="_blank" rel="noopener" class="connect-pill pill-bgg">BGG cappgames</a>
         <a href="https://www.linkedin.com/in/carlospinedap/" target="_blank" rel="noopener" class="connect-pill pill-li">LinkedIn</a>
         <a href="https://discord.gg/8C9Z48nBRy" target="_blank" rel="noopener" class="connect-pill pill-dc">Discord</a>
-        <a href="/about" class="connect-pill pill-email">&#9993; Contact</a>
+        <a href="/about#contact" class="connect-pill pill-email">&#9993; Contact</a>
       </div>
       <a href="/about" class="connect-more">About &amp; full contact &rarr;</a>
     </div>
@@ -100,15 +129,15 @@ import Layout from '../layouts/Layout.astro';
 <style>
   /* ─── Hero ───────────────────────────────────────────────── */
   .hero {
-    min-height: 30vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 1rem 1.5rem 1rem;
+    padding: 3rem 1.5rem 3.5rem;
     background:
-      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(245,192,0,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 80% 50% at 50% 50%, rgba(245,192,0,0.05) 0%, transparent 70%),
       var(--bg);
+    border-top: 1px solid var(--border);
   }
 
   .hero-content {
@@ -142,17 +171,78 @@ import Layout from '../layouts/Layout.astro';
     padding: 0.75rem 0 5rem;
   }
 
-  .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
-
   .product-card {
     display: flex;
     flex-direction: column;
     text-decoration: none;
     color: var(--text);
+  }
+
+  /* Featured card — full width, vertical (same card style, just wider) */
+  .product-card-featured {
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .card-overlay-link {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .featured-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    position: relative;
+    z-index: 1;
+    margin-top: 0.25rem;
+  }
+
+  .play-now-btn {
+    font-size: 0.95rem;
+    padding: 0.6rem 1.5rem;
+  }
+
+  .details-link {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .details-link:hover { color: var(--gold); }
+
+  .featured-img-wrap {
+    aspect-ratio: 3/1;
+    max-height: 220px;
+  }
+
+  .featured-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .featured-title {
+    font-size: 1.4rem;
+    color: var(--text);
+  }
+
+  .update-teaser {
+    color: var(--text-dim);
+    font-style: italic;
+    border-left: 2px solid rgba(120,180,255,0.3);
+    padding-left: 0.75rem;
+  }
+
+  /* Board games 2-column row */
+  .board-games-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
   }
 
   .card-img-wrap {
@@ -192,22 +282,57 @@ import Layout from '../layouts/Layout.astro';
     background: linear-gradient(135deg, #020d1a, #052840);
   }
 
-  .fa-preview {
+  .fa-hex-card {
+    position: relative;
+    background: #050b18;
+    overflow: hidden;
+  }
+
+  .fa-hex-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .fa-overlay-content {
+    position: absolute;
+    inset: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 0.75rem;
+    z-index: 1;
   }
+
   .fa-heroes {
     display: flex;
-    gap: 0.5rem;
-    font-size: 2.2rem;
+    gap: 2.2rem;
+    font-size: 2.86rem;
   }
+
   .fa-label {
     font-family: 'Cinzel', serif;
-    font-size: 0.85rem;
-    color: var(--text-dim);
-    letter-spacing: 0.1em;
+    font-size: 2.3rem;
+    letter-spacing: 0.12em;
+    background: linear-gradient(90deg, #f0c040, #f08040);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .fa-chest-img {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 90%;
+    width: auto;
+    max-width: 180px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 28px rgba(91,175,245,0.45)) drop-shadow(0 6px 14px rgba(0,0,0,0.6));
   }
 
   .jf-preview { display: flex; align-items: center; justify-content: center; }
@@ -310,10 +435,20 @@ import Layout from '../layouts/Layout.astro';
   }
   .connect-more:hover { color: var(--gold); }
 
+  .tag-update {
+    background: rgba(100,160,255,0.12);
+    color: #80b8ff;
+    border-color: rgba(100,160,255,0.3);
+  }
+
   @media (max-width: 640px) {
     .hero {
       min-height: unset;
       padding: 2.5rem 1.5rem 1.5rem;
+    }
+
+    .board-games-row {
+      grid-template-columns: 1fr;
     }
   }
 </style>

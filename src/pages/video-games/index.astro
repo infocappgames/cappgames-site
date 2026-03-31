@@ -15,38 +15,59 @@ import Layout from '../../layouts/Layout.astro';
         <p class="page-sub">Free to play. No download. Just click and go.</p>
       </div>
 
-      <div class="game-grid">
-
-        <!-- Fantasy Arena -->
-        <a href="/video-games/fantasy-arena" class="card game-card">
-          <div class="card-img-wrap card-img-dark">
-            <div class="fa-preview">
-              <span class="fa-icon">&#9876;&#65039;</span>
-              <span class="fa-label">Fantasy Arena</span>
+      <!-- Fantasy Arena — featured -->
+      <div class="card game-card">
+        <a href="/video-games/fantasy-arena" class="card-overlay-link" aria-label="View Auto-Chess: Fantasy Arena"></a>
+        <div class="fa-hex-card featured-img-wrap">
+          <svg class="fa-hex-svg" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="fa-bg" cx="50%" cy="50%" r="70%">
+                <stop offset="0%" stop-color="#0d1530"/>
+                <stop offset="100%" stop-color="#050b18"/>
+              </radialGradient>
+              <radialGradient id="fa-glow" cx="50%" cy="50%" r="40%">
+                <stop offset="0%" stop-color="rgba(91,175,245,0.12)"/>
+                <stop offset="100%" stop-color="rgba(91,175,245,0)"/>
+              </radialGradient>
+              <pattern id="hexgrid" x="25" y="0" width="150" height="86.6" patternUnits="userSpaceOnUse">
+                <polygon points="50,0 25,43.3 -25,43.3 -50,0 -25,-43.3 25,-43.3" fill="none" stroke="rgba(91,175,245,0.22)" stroke-width="1.5"/>
+                <polygon points="125,43.3 100,86.6 50,86.6 25,43.3 50,0 100,0" fill="none" stroke="rgba(91,175,245,0.22)" stroke-width="1.5"/>
+              </pattern>
+            </defs>
+            <rect width="600" height="200" fill="url(#fa-bg)"/>
+            <rect width="600" height="200" fill="url(#hexgrid)"/>
+            <rect width="600" height="200" fill="url(#fa-glow)"/>
+          </svg>
+          <div class="fa-overlay-content">
+            <div class="fa-heroes">
+              <span>&#9876;&#65039;</span>
+              <span>&#129497;</span>
+              <span>&#127993;</span>
+              <span>&#128154;</span>
+              <span>&#128481;&#65039;</span>
             </div>
+            <span class="fa-label">Auto-Chess: Fantasy Arena</span>
           </div>
-          <div class="card-body">
-            <div class="card-top">
-              <span class="tag tag-blue">Free Browser Game</span>
-            </div>
-            <h2>Auto-Chess: Fantasy Arena</h2>
-            <p class="card-desc">
-              An auto-chess strategy game where you summon heroes via gacha, deploy them
-              on a hex grid, and watch automated battles unfold across escalating rounds.
-              Survive long enough to face the secret end-game.
-            </p>
-            <div class="card-meta">
-              <span>Free</span>
-              <span class="dot">&#183;</span>
-              <span>Single-Player</span>
-              <span class="dot">&#183;</span>
-              <span>Top 25 Scoreboard</span>
-            </div>
-            <span class="card-cta">Play Free &rarr;</span>
+        </div>
+        <div class="card-body">
+          <div class="featured-tags">
+            <span class="tag tag-blue">Browser Game</span>
+            <span class="tag tag-update">Major Update Coming</span>
           </div>
-        </a>
-
+          <h2>Auto-Chess: Fantasy Arena</h2>
+          <p class="card-desc">
+            An auto-chess strategy game where you summon heroes via gacha, deploy them
+            on a hex grid, and watch automated battles unfold across escalating rounds.
+            Survive long enough to face the secret end-game.
+          </p>
+          <p class="card-desc update-teaser">A major update is in the works — stay tuned for more info soon.</p>
+          <div class="featured-actions">
+            <a href="https://fantasy-arena-iota.vercel.app" target="_blank" rel="noopener" class="btn btn-gold play-now-btn">&#9658; Play Now</a>
+            <a href="/video-games/fantasy-arena" class="details-link">More Info &rarr;</a>
+          </div>
+        </div>
       </div>
+
     </div>
   </section>
 </Layout>
@@ -62,61 +83,82 @@ import Layout from '../../layouts/Layout.astro';
     margin: 0;
   }
 
-  .game-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  @media (max-width: 640px) {
-    .game-grid { grid-template-columns: 1fr; }
-  }
-
+  /* Featured card */
   .game-card {
     display: flex;
     flex-direction: column;
-    text-decoration: none;
     color: var(--text);
+    margin-top: 2rem;
+    position: relative;
   }
 
-  .card-img-wrap {
-    width: 100%;
-    aspect-ratio: 16/9;
+  .card-overlay-link {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  /* Hex image area */
+  .fa-hex-card {
+    position: relative;
+    background: #050b18;
     overflow: hidden;
-    background: #1a1a1a;
+    width: 100%;
+    aspect-ratio: 3/1;
+    max-height: 220px;
   }
 
-  .card-img-dark {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #0a0a15, #1a1a30);
+  .fa-hex-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
   }
 
-  .fa-preview {
+  .fa-overlay-content {
+    position: absolute;
+    inset: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
-  }
-  .fa-icon { font-size: 3.5rem; }
-  .fa-label {
-    font-family: 'Cinzel', serif;
-    font-size: 0.9rem;
-    color: var(--text-dim);
-    letter-spacing: 0.1em;
+    justify-content: center;
+    gap: 0.75rem;
+    z-index: 1;
   }
 
+  .fa-heroes {
+    display: flex;
+    gap: 2.2rem;
+    font-size: 2.86rem;
+  }
+
+  .fa-label {
+    font-family: 'Cinzel', serif;
+    font-size: 2.3rem;
+    letter-spacing: 0.12em;
+    background: linear-gradient(90deg, #f0c040, #f08040);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Card body */
   .card-body {
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
-    flex: 1;
+    gap: 0.65rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-top: none;
   }
 
-  .card-top { margin-bottom: 0.25rem; }
+  .featured-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
 
   .card-body h2 {
     font-size: 1.4rem;
@@ -128,26 +170,48 @@ import Layout from '../../layouts/Layout.astro';
     font-size: 0.95rem;
     line-height: 1.65;
     margin: 0;
-    flex: 1;
   }
 
-  .card-meta {
+  .update-teaser {
+    font-style: italic;
+    border-left: 2px solid rgba(120,180,255,0.3);
+    padding-left: 0.75rem;
+  }
+
+  .featured-actions {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    font-size: 0.82rem;
-    color: #5baff5;
-    font-weight: 500;
+    justify-content: center;
+    gap: 1.25rem;
+    position: relative;
+    z-index: 1;
+    margin-top: 0.25rem;
   }
 
-  .dot { opacity: 0.4; }
+  .play-now-btn {
+    font-size: 0.95rem;
+    padding: 0.6rem 1.5rem;
+  }
 
-  .card-cta {
-    color: var(--gold);
+  .details-link {
+    color: var(--text-dim);
     font-size: 0.85rem;
     font-weight: 600;
     letter-spacing: 0.04em;
-    margin-top: 0.5rem;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .details-link:hover { color: var(--gold); }
+
+  .tag-update {
+    background: rgba(100,160,255,0.12);
+    color: #80b8ff;
+    border-color: rgba(100,160,255,0.3);
+  }
+
+  @media (max-width: 640px) {
+    .fa-label { font-size: 1.2rem; }
+    .fa-heroes { font-size: 1.8rem; gap: 1rem; }
+    .fa-hex-card { max-height: 160px; }
   }
 </style>

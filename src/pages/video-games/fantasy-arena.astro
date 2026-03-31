@@ -73,48 +73,108 @@ const jsonLd = {
     </div>
   </div>
 
-  <!-- ─── Features ─────────────────────────────────────────── -->
+  <!-- ─── How to Play ──────────────────────────────────────── -->
   <section class="features">
     <div class="container">
+
       <div class="section-header">
-        <h2>How It Works</h2>
+        <h2>How to Play</h2>
         <div class="gold-divider"></div>
       </div>
 
-      <div class="feature-grid">
-        <div class="feature-card">
-          <div class="feature-icon">&#127915;</div>
-          <h3>Gacha Summoning</h3>
-          <p>Spend gold to summon from 5 hero unit types, each with unique abilities and synergies.</p>
+      <div class="steps-row">
+        <div class="step-card">
+          <div class="step-icon">&#127922;</div>
+          <div class="step-name">Discover</div>
+          <div class="step-desc">Pull free heroes</div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">&#9900;</div>
-          <h3>Hex Grid Tactics</h3>
-          <p>Position your heroes strategically on a hex battlefield. Placement determines everything.</p>
+        <div class="step-arrow">&rarr;</div>
+        <div class="step-card">
+          <div class="step-icon">&#128722;</div>
+          <div class="step-name">Shop</div>
+          <div class="step-desc">Buy &amp; sell heroes</div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">&#9889;</div>
-          <h3>Auto-Battle</h3>
-          <p>Watch your army fight automatically — the strategy happens in the prep phase, not mid-fight.</p>
+        <div class="step-arrow">&rarr;</div>
+        <div class="step-card">
+          <div class="step-icon">&#128212;</div>
+          <div class="step-name">Deploy</div>
+          <div class="step-desc">Place your team</div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">&#128565;</div>
-          <h3>The Abyss</h3>
-          <p>Survive long enough to face the secret end-game. Few make it. Fewer still conquer it.</p>
+        <div class="step-arrow">&rarr;</div>
+        <div class="step-card">
+          <div class="step-icon">&#9876;&#65039;</div>
+          <div class="step-name">Battle</div>
+          <div class="step-desc">Watch them fight</div>
+        </div>
+        <div class="step-arrow">&rarr;</div>
+        <div class="step-card">
+          <div class="step-icon">&#128176;</div>
+          <div class="step-name">Loot</div>
+          <div class="step-desc">Collect rewards</div>
         </div>
       </div>
 
+      <!-- Heroes -->
+      <div class="section-header" style="margin-top:3rem">
+        <h2>Heroes</h2>
+        <div class="gold-divider"></div>
+      </div>
+
+      <div class="hero-grid">
+        <div class="hero-card">
+          <div class="hero-icon">&#9876;&#65039;</div>
+          <div class="hero-name">Warrior</div>
+          <span class="role-badge role-tank">Tank</span>
+          <p class="hero-traits">Melee · High HP · Absorbs hits</p>
+        </div>
+        <div class="hero-card">
+          <div class="hero-icon">&#128154;</div>
+          <div class="hero-name">Healer</div>
+          <span class="role-badge role-support">Support</span>
+          <p class="hero-traits">Heals allies · Fastest · Vital</p>
+        </div>
+        <div class="hero-card">
+          <div class="hero-icon">&#129497;</div>
+          <div class="hero-name">Assassin</div>
+          <span class="role-badge role-finisher">Finisher</span>
+          <p class="hero-traits">Targets weakest · Executes · Pursues</p>
+        </div>
+        <div class="hero-card">
+          <div class="hero-icon">&#127993;</div>
+          <div class="hero-name">Archer</div>
+          <span class="role-badge role-sniper">Sniper</span>
+          <p class="hero-traits">Long range · Retreats · Fast</p>
+        </div>
+        <div class="hero-card">
+          <div class="hero-icon">&#128481;&#65039;</div>
+          <div class="hero-name">Mage</div>
+          <span class="role-badge role-aoe">AoE Blaster</span>
+          <p class="hero-traits">Ranged · Splashes damage · Slow</p>
+        </div>
+      </div>
+
+      <!-- Tips -->
+      <div class="section-header" style="margin-top:3rem">
+        <h2>Tips</h2>
+        <div class="gold-divider"></div>
+      </div>
+
+      <ul class="tips-list">
+        <li>3 copies of the same hero merge into a higher rarity</li>
+        <li>You can sell unwanted heroes in the Shop for gold</li>
+        <li>Each run the enemy forces are different — adapt your strategy</li>
+        <li>Survive deeper rounds to claim your place in the Hall of Champions</li>
+        <li>Win Round 20 to discover what waits beyond…</li>
+      </ul>
+
+      <!-- CTA -->
       <div class="play-cta">
-        <a
-          href="https://fantasy-arena-iota.vercel.app"
-          target="_blank"
-          rel="noopener"
-          class="btn btn-gold"
-        >
-          Open Fantasy Arena
+        <a href="https://fantasy-arena-iota.vercel.app" target="_blank" rel="noopener" class="btn btn-gold">
+          &#9658; Play Now — Free
         </a>
         <p class="play-note">No account required. Runs in any modern browser.</p>
       </div>
+
     </div>
   </section>
 </Layout>
@@ -216,43 +276,107 @@ const jsonLd = {
     background: var(--border);
   }
 
-  /* ─── Features ───────────────────────────────────────────── */
+  /* ─── How to Play ────────────────────────────────────────── */
   .features {
     padding: 2rem 0 5rem;
   }
 
-  .feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.25rem;
-    margin-bottom: 3rem;
+  /* Steps */
+  .steps-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
   }
 
-  .feature-card {
+  .step-card {
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 1.5rem;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    width: 120px;
     transition: border-color 0.2s;
   }
-  .feature-card:hover { border-color: var(--gold); }
+  .step-card:hover { border-color: var(--gold); }
 
-  .feature-icon {
-    font-size: 2rem;
-    margin-bottom: 0.75rem;
+  .step-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .step-name { font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--gold); margin-bottom: 0.3rem; }
+  .step-desc { font-size: 0.78rem; color: var(--text-dim); }
+
+  .step-arrow {
+    color: var(--text-dim);
+    font-size: 1.2rem;
+    flex-shrink: 0;
   }
 
-  .feature-card h3 {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    color: var(--gold);
+  /* Heroes */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
   }
 
-  .feature-card p {
-    font-size: 0.9rem;
+  .hero-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 0.75rem;
+    text-align: center;
+    transition: border-color 0.2s;
+  }
+  .hero-card:hover { border-color: rgba(91,175,245,0.5); }
+
+  .hero-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .hero-name { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--text); margin-bottom: 0.5rem; }
+
+  .role-badge {
+    display: inline-block;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.6rem;
+  }
+  .role-tank     { background: rgba(80,120,220,0.2); color: #7aabff; }
+  .role-support  { background: rgba(80,200,120,0.2); color: #6fdda0; }
+  .role-finisher { background: rgba(220,60,60,0.2);  color: #ff8080; }
+  .role-sniper   { background: rgba(180,140,60,0.2); color: #e0b84a; }
+  .role-aoe      { background: rgba(150,80,220,0.2); color: #c090ff; }
+
+  .hero-traits {
+    font-size: 0.78rem;
     color: var(--text-dim);
     margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Tips */
+  .tips-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .tips-list li {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    padding-left: 1.4rem;
+    position: relative;
     line-height: 1.6;
+  }
+
+  .tips-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
   }
 
   /* Play CTA */
@@ -270,7 +394,17 @@ const jsonLd = {
     margin: 0;
   }
 
+  @media (max-width: 768px) {
+    .hero-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .step-arrow { display: none; }
+    .steps-row { gap: 0.75rem; }
+  }
+
   @media (max-width: 600px) {
     .stat-divider { display: none; }
+    .hero-grid { grid-template-columns: repeat(2, 1fr); }
+    .step-card { width: 100px; }
   }
 </style>

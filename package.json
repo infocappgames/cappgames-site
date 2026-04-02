@@ -13,6 +13,7 @@
     "@astrojs/vercel": "^10.0.2",
     "@auth/core": "^0.37.4",
     "@libsql/client": "^0.17.2",
+    "@vercel/analytics": "^2.0.1",
     "astro": "^6.0.8",
     "auth-astro": "^4.2.0",
     "drizzle-orm": "^0.45.1"

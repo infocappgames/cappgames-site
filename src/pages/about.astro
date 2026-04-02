@@ -93,6 +93,22 @@ const socials = [
     </div>
   </section>
 
+  <!-- ─── Support ───────────────────────────────────────────── -->
+  <section class="support-section">
+    <div class="container">
+      <div class="support-card">
+        <p class="support-heading">Enjoying our games?</p>
+        <p class="support-sub">CAPP GAMES is a one-person indie studio. Your support helps keep the updates coming and new games in the works.</p>
+        <a href="https://ko-fi.com/cappgames" target="_blank" rel="noopener" class="kofi-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.349 2.658-3.886-.025-1.502-.157-1.996-.157-1.996 0 0 3.555.07 5.063-1.583 1.498-1.645.576-3.185.576-3.185zm-13.37 7.214h-2.141V7.571h2.141v8.591zm3.855 0h-2.141v-5.56h2.141v5.56zm0-7.697h-2.141V6.276h2.141v2.189zm4.965 7.697h-2.141v-2.756l-2.141-3.066h2.523l.879 1.614.879-1.614h2.523l-2.141 3.066v2.756h-.381z"/>
+          </svg>
+          Support on Ko-fi
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- ─── Socials ───────────────────────────────────────────── -->
   <section class="socials-section">
     <div class="container">
@@ -294,6 +310,63 @@ const socials = [
     transition: border-color 0.2s;
   }
   .inline-link:hover { border-color: var(--gold); }
+
+  /* ─── Support ─────────────────────────────────────────────── */
+  .support-section {
+    padding: 3rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .support-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2.5rem 2rem;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  .support-heading {
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin: 0;
+  }
+
+  .support-sub {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 380px;
+  }
+
+  .kofi-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 0.5rem;
+    padding: 0.6rem 1.4rem;
+    background: #FF5E5B;
+    color: #ffffff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 3px 12px rgba(255,94,91,0.35);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .kofi-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 18px rgba(255,94,91,0.55);
+  }
 
   /* ─── Socials ─────────────────────────────────────────────── */
   .socials-section {
@@ -580,8 +653,22 @@ const socials = [
     submit.disabled = true;
     submit.textContent = 'Sending…';
 
-    // TODO: replace with real API call when backend is ready
-    await new Promise(r => setTimeout(r, 800));
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: val('cf-name'),
+        email: val('cf-email'),
+        reason: val('cf-reason'),
+        message: val('cf-message'),
+      }),
+    });
+
+    if (!res.ok) {
+      submit.disabled = false;
+      submit.textContent = 'Send Message';
+      return;
+    }
 
     form.hidden = true;
     success.hidden = false;

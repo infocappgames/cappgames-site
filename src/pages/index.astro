@@ -37,7 +37,6 @@ import Layout from '../layouts/Layout.astro';
             <rect width="600" height="200" fill="url(#hexgrid)"/>
             <rect width="600" height="200" fill="url(#fa-glow)"/>
           </svg>
-          <img src="/images/fa-chest.png" class="fa-chest-img" alt="" />
           <div class="fa-overlay-content">
             <div class="fa-heroes">
               <span>&#9876;&#65039;</span>
@@ -323,17 +322,6 @@ import Layout from '../layouts/Layout.astro';
     background-clip: text;
   }
 
-  .fa-chest-img {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 90%;
-    width: auto;
-    max-width: 180px;
-    object-fit: contain;
-    filter: drop-shadow(0 0 28px rgba(91,175,245,0.45)) drop-shadow(0 6px 14px rgba(0,0,0,0.6));
-  }
 
   .jf-preview { display: flex; align-items: center; justify-content: center; }
   .jf-icon { font-size: 4rem; }

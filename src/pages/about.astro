@@ -148,13 +148,6 @@ const socials = [
       </div>
 
       <div class="form-wrap">
-        <!-- Success state -->
-        <div id="contact-success" class="contact-success" hidden>
-          <div class="success-icon">&#10003;</div>
-          <h3>Message sent!</h3>
-          <p>Thanks for reaching out. We'll get back to you soon.</p>
-        </div>
-
         <!-- Form -->
         <form id="contact-form" class="contact-form" novalidate>
           <div class="field-row">
@@ -228,6 +221,11 @@ const socials = [
     <p class="brand-tagline">Built by a player, for players.</p>
   </section>
 
+<!-- ─── Toast ─────────────────────────────────────────────── -->
+<div id="cf-toast" class="cf-toast" aria-live="polite" hidden>
+  <span class="cf-toast-icon">&#10003;</span>
+  <span class="cf-toast-msg">Message sent! We'll get back to you soon.</span>
+</div>
 </Layout>
 
 <style>
@@ -605,12 +603,59 @@ const socials = [
     .field-row  { grid-template-columns: 1fr; }
     .form-footer { flex-direction: column; align-items: flex-start; }
   }
+
+  /* ─── Toast ───────────────────────────────────────────────── */
+  .cf-toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(1rem);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: #1a2a1a;
+    border: 1px solid rgba(80,200,80,0.35);
+    color: #7ddb7d;
+    padding: 0.75rem 1.4rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 1000;
+    pointer-events: none;
+  }
+  .cf-toast.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  .cf-toast-icon {
+    font-size: 1rem;
+    background: rgba(80,200,80,0.2);
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
 </style>
 
 <script>
-  const form    = document.getElementById('contact-form') as HTMLFormElement;
-  const success = document.getElementById('contact-success') as HTMLElement;
-  const submit  = document.getElementById('cf-submit') as HTMLButtonElement;
+  const form   = document.getElementById('contact-form') as HTMLFormElement;
+  const submit = document.getElementById('cf-submit') as HTMLButtonElement;
+  const toast  = document.getElementById('cf-toast') as HTMLElement;
+
+  function showToast() {
+    toast.hidden = false;
+    requestAnimationFrame(() => toast.classList.add('visible'));
+    setTimeout(() => {
+      toast.classList.remove('visible');
+      toast.addEventListener('transitionend', () => { toast.hidden = true; }, { once: true });
+    }, 4000);
+  }
 
   function val(id: string) {
     return (document.getElementById(id) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement).value.trim();
@@ -670,8 +715,11 @@ const socials = [
       return;
     }
 
-    form.hidden = true;
-    success.hidden = false;
+    form.reset();
+    counter.textContent = '0 / 1000';
+    submit.disabled = false;
+    submit.textContent = 'Send Message';
+    showToast();
   });
 
   // Live character counter for message

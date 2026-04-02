@@ -24,7 +24,7 @@ const jsonLd = {
   <!-- ─── Hero ─────────────────────────────────────────────── -->
   <section class="hero">
     <div class="hero-bg">
-      <img src="/images/ransack-banner.png" alt="" class="hero-bg-img" aria-hidden="true" />
+      <img src="/images/ransack-banner2.png" alt="" class="hero-bg-img" aria-hidden="true" />
       <div class="hero-overlay"></div>
     </div>
     <div class="hero-content container">
@@ -114,14 +114,26 @@ const jsonLd = {
         </div>
       </div>
 
-      <!-- Photo -->
+      <!-- Carousel -->
       <div class="photo-col">
-        <img
-          src="/images/ransack-photo.jpg"
-          alt="Ransack cards spread out on a table"
-          class="game-photo"
-        />
-        <p class="photo-caption">Cards from a live game session</p>
+        <div class="carousel" id="ransack-carousel">
+          <button class="carousel-btn carousel-btn--prev" aria-label="Previous photo">&#8249;</button>
+          <div class="carousel-track-wrap">
+            <div class="carousel-track">
+              <img src="/images/ransack-photo.jpg"         alt="Ransack box surrounded by all its cards"        class="carousel-slide" />
+              <img src="/images/Ransack_BoxContent.png"    alt="Ransack box and its contents"               class="carousel-slide" />
+              <img src="/images/Ransack_CardTypes.png"     alt="Overview of the different card types"       class="carousel-slide" />
+              <img src="/images/Ransack_showingCards.jpeg" alt="Product view — box opened"                  class="carousel-slide" />
+              <img src="/images/Ransack_POV_playing.jpg"   alt="Point-of-view of a hand in play"           class="carousel-slide" />
+              <img src="/images/Ransack_playing.png"       alt="Players around the table mid-game"          class="carousel-slide" />
+              <img src="/images/Ransack_POV_playing3.jpg"  alt="Plotting the next move"                    class="carousel-slide" />
+              <img src="/images/Ransack_POV_playing2.jpg"  alt="Weighing your options"                     class="carousel-slide" />
+            </div>
+          </div>
+          <button class="carousel-btn carousel-btn--next" aria-label="Next photo">&#8250;</button>
+        </div>
+        <div class="carousel-dots" id="ransack-dots"></div>
+        <p class="photo-caption" id="ransack-caption">Ransack box and all its cards</p>
       </div>
 
     </div>
@@ -160,8 +172,34 @@ const jsonLd = {
     </div>
   </section>
 
-  <!-- ─── Gallery placeholder ─────────────────────────────────── -->
-  <!-- TODO: Add photo gallery when new images are ready (box, people playing, etc.) -->
+
+  <!-- ─── Artist Credits ─────────────────────────────────────── -->
+  <section class="credits">
+    <div class="container">
+      <div class="section-header">
+        <h2>Art &amp; Illustration</h2>
+        <div class="gold-divider"></div>
+      </div>
+      <div class="credits-card">
+        <div class="credits-info">
+          <span class="credits-role">Card Illustrator</span>
+          <span class="credits-name">Daniel Fandiño</span>
+          <a
+            href="https://www.instagram.com/poi.son_art/"
+            target="_blank"
+            rel="noopener"
+            class="credits-ig"
+          >&#64;poi.son_art</a>
+        </div>
+        <div class="credits-art">
+          <img src="/images/Artist_dag.png"   alt="Card illustration by Daniel Fandiño"          class="credits-art-img" />
+          <img src="/images/Artist_Lich.png"  alt="Lich card illustration by Daniel Fandiño"     class="credits-art-img" />
+          <img src="/images/Artist_Gobl.png"  alt="Goblin card illustration by Daniel Fandiño"   class="credits-art-img" />
+          <img src="/images/Artist_Merc.png"  alt="Mercenary card illustration by Daniel Fandiño" class="credits-art-img" />
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ─── FAQ ─────────────────────────────────────────────────── -->
   <section class="faq">
@@ -418,6 +456,152 @@ const jsonLd = {
     line-height: 1.6;
   }
 
+  /* ─── Carousel ──────────────────────────────────────────── */
+  .carousel {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+  }
+
+  .carousel-track-wrap {
+    overflow: hidden;
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.4s ease;
+  }
+
+  .carousel-slide {
+    min-width: 100%;
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+  }
+
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: rgba(13,13,13,0.65);
+    color: var(--gold);
+    border: 1px solid rgba(245,192,0,0.25);
+    border-radius: 50%;
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .carousel-btn:hover {
+    background: rgba(245,192,0,0.15);
+    border-color: var(--gold);
+  }
+  .carousel-btn--prev { left: 0.5rem; }
+  .carousel-btn--next { right: 0.5rem; }
+
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-top: 0.6rem;
+  }
+
+  .carousel-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--border);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s;
+  }
+  .carousel-dot.active { background: var(--gold); }
+
+  /* ─── Artist Credits ────────────────────────────────────── */
+  .credits {
+    padding: 1rem 0 3rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .credits-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+  }
+
+  .credits-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .credits-role {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.8;
+  }
+
+  .credits-name {
+    font-size: 1.1rem;
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .credits-ig {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.2rem 0.75rem;
+    width: fit-content;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .credits-ig:hover {
+    color: #f06090;
+    border-color: rgba(225,48,108,0.4);
+  }
+
+  .credits-art {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .credits-art-img {
+    height: 110px;
+    width: auto;
+    border-radius: calc(var(--radius) - 2px);
+    border: 1px solid var(--border);
+    object-fit: cover;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .credits-art-img:hover {
+    transform: translateY(-3px);
+    border-color: var(--gold);
+  }
+
   /* ─── FAQ ───────────────────────────────────────────────── */
   .faq {
     padding: 1rem 0 5rem;
@@ -489,3 +673,47 @@ const jsonLd = {
     .stat-divider { display: none; }
   }
 </style>
+
+<script>
+  const captions = [
+    'Ransack box and all its cards',
+    'Ransack box and its contents',
+    'Overview of the different card types',
+    'Product view — box opened',
+    'Point-of-view of a hand in play',
+    'Players around the table mid-game',
+    'Plotting the next move',
+    'Weighing your options',
+  ];
+
+  const track    = document.querySelector<HTMLElement>('.carousel-track')!;
+  const slides   = document.querySelectorAll<HTMLElement>('.carousel-slide');
+  const dotsWrap = document.getElementById('ransack-dots')!;
+  const caption  = document.getElementById('ransack-caption')!;
+  const btnPrev  = document.querySelector<HTMLButtonElement>('.carousel-btn--prev')!;
+  const btnNext  = document.querySelector<HTMLButtonElement>('.carousel-btn--next')!;
+
+  let current = 0;
+
+  // Build dots
+  const dots: HTMLButtonElement[] = [];
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', `Go to photo ${i + 1}`);
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+    dots.push(d);
+  });
+
+  function goTo(index: number) {
+    dots[current].classList.remove('active');
+    current = (index + slides.length) % slides.length;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots[current].classList.add('active');
+    caption.textContent = captions[current];
+  }
+
+  btnPrev.addEventListener('click', () => goTo(current - 1));
+  btnNext.addEventListener('click', () => goTo(current + 1));
+</script>

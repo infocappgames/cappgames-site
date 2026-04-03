@@ -9,11 +9,12 @@ import Layout from '../../layouts/Layout.astro';
   <section class="page">
     <div class="container">
       <div class="section-header">
-        <a href="/" class="back-link">&#8592; Home</a>
         <h1>Video Games</h1>
         <div class="gold-divider"></div>
         <p class="page-sub">Free to play. No download. Just click and go.</p>
       </div>
+
+      <a href="/" class="back-link page-back">&#8592; Home</a>
 
       <!-- Fantasy Arena — featured -->
       <div class="card game-card">
@@ -83,12 +84,17 @@ import Layout from '../../layouts/Layout.astro';
     margin: 0;
   }
 
+  .page-back {
+    display: inline-flex;
+    margin-bottom: 1rem;
+  }
+
   /* Featured card */
   .game-card {
     display: flex;
     flex-direction: column;
     color: var(--text);
-    margin-top: 2rem;
+
     position: relative;
   }
 
@@ -212,6 +218,7 @@ import Layout from '../../layouts/Layout.astro';
   @media (max-width: 640px) {
     .fa-label { font-size: 1.2rem; }
     .fa-heroes { font-size: 1.8rem; gap: 1rem; }
+    .fa-overlay-content { gap: 0.1rem; }
     .fa-hex-card { max-height: 160px; }
   }
 </style>

@@ -9,11 +9,12 @@ import Layout from '../../layouts/Layout.astro';
   <section class="page">
     <div class="container">
       <div class="section-header">
-        <a href="/" class="back-link">&#8592; Home</a>
         <h1>Board Games</h1>
         <div class="gold-divider"></div>
         <p class="page-sub">Physical games you can hold in your hands.</p>
       </div>
+
+      <a href="/" class="back-link page-back">&#8592; Home</a>
 
       <div class="game-grid">
 
@@ -79,11 +80,15 @@ import Layout from '../../layouts/Layout.astro';
     margin: 0;
   }
 
+  .page-back {
+    display: inline-flex;
+    margin-bottom: 1rem;
+  }
+
   .game-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
-    margin-top: 2rem;
   }
 
   .game-card {

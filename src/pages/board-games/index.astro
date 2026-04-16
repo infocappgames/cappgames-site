@@ -4,7 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 
 <Layout
   title="Board Games"
-  description="CAPP GAMES board games — Ransack (published) and Jelly Fuse (in development)."
+  description="CAPP GAMES board games — Ransack (published) and a new water-themed game in development."
 >
   <section class="page">
     <div class="container">
@@ -43,24 +43,24 @@ import Layout from '../../layouts/Layout.astro';
           </div>
         </a>
 
-        <!-- Jelly Fuse -->
-        <a href="/board-games/jelly-fuse" class="card game-card game-card-soon">
+        <!-- New game (unnamed) -->
+        <a href="/board-games/new-game" class="card game-card game-card-soon">
           <div class="card-img-wrap">
-            <img src="/images/jelly-fuse-banner.png" alt="Jelly Fuse board game" class="card-img card-img-top" />
+            <img src="/images/UpcomingWaterGame.png" alt="New water-themed board game in development" class="card-img" />
           </div>
           <div class="card-body">
             <div class="card-top">
               <span class="tag tag-gray">In Development</span>
             </div>
-            <h2>Jelly Fuse</h2>
+            <h2>Designing Something New</h2>
             <p class="card-desc">
-              An ocean-themed strategy board game set in the bioluminescent deep.
-              Currently heading toward playtesting.
+              A new water-themed board game is in the works.
+              More details when the time is right.
             </p>
             <div class="card-meta card-meta-dim">
               <span>Details TBD</span>
             </div>
-            <span class="card-cta card-cta-dim">Learn More &rarr;</span>
+            <span class="card-cta card-cta-dim">Peek In &rarr;</span>
           </div>
         </a>
 
@@ -125,7 +125,12 @@ import Layout from '../../layouts/Layout.astro';
     background: linear-gradient(135deg, #020d1a, #052840);
   }
 
-  .jf-icon { font-size: 4rem; }
+  .mystery-q {
+    font-size: 3.5rem;
+    color: rgba(100,180,255,0.3);
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+  }
 
   .card-body {
     padding: 1.5rem;

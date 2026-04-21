@@ -7,22 +7,7 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 const videoGamesHref = getRelativeLocaleUrl(lang, '/video-games');
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'VideoGame',
-  name: 'Auto-Chess: Fantasy Arena',
-  description: 'Free browser strategy game. Summon heroes, deploy them on a hex grid, and conquer The Abyss.',
-  url: 'https://cappgames.com/video-games/fantasy-arena',
-  image: 'https://cappgames.com/images/fantasy-arena-banner2.webp',
-  gamePlatform: 'Web Browser',
-  applicationCategory: 'Game',
-  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-  publisher: { '@type': 'Organization', name: 'CAPP GAMES' },
-  author: { '@type': 'Person', name: 'Andrés Pineda' },
-};
 ---
-
-<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
 <!-- ─── Hero ─────────────────────────────────────────────── -->
 <section class="hero">

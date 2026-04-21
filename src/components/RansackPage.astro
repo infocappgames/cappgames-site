@@ -12,21 +12,7 @@ const captions = [
   t('ransack.caption4'), t('ransack.caption5'), t('ransack.caption6'), t('ransack.caption7'),
 ];
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Game',
-  name: 'Ransack',
-  description: 'A medieval-fantasy card game for 3–6 players where crafty thieves compete to escape a dungeon with the most treasure.',
-  url: 'https://cappgames.com/board-games/ransack',
-  image: 'https://cappgames.com/images/ransack-cover.webp',
-  publisher: { '@type': 'Organization', name: 'CAPP GAMES' },
-  author: { '@type': 'Person', name: 'Andrés Pineda' },
-  numberOfPlayers: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 6 },
-  gameLocation: 'Tabletop',
-};
 ---
-
-<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
 <!-- ─── Hero ─────────────────────────────────────────────── -->
 <section class="hero">

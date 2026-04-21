@@ -47,7 +47,9 @@ const orgJsonLd = {
 };
 
 const fullTitle = `${title} | CAPP GAMES`;
-const ogImageURL = new URL(ogImage, Astro.site ?? 'https://cappgames.com').href;
+const ogImageURL = ogImage.startsWith('http')
+  ? ogImage
+  : `https://capp-games.com${ogImage}`;
 ---
 
 <!doctype html>

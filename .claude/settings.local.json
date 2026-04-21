@@ -50,7 +50,12 @@
       "Bash(powershell -command 'Add-Type -AssemblyName System.Drawing; $img = [System.Drawing.Image]::FromFile\\(\\(Resolve-Path '\\\\''public/images/capp-games_sharebanner.png'\\\\''\\)\\); Write-Output \"$\\($img.Width\\)x$\\($img.Height\\)\"; $img.Dispose\\(\\)')",
       "Bash(powershell -command 'Add-Type -AssemblyName System.Drawing; $img = [System.Drawing.Image]::FromFile\\(\\(Resolve-Path '\\\\''public/images/capp-logo.png'\\\\''\\)\\); Write-Output \"$\\($img.Width\\)x$\\($img.Height\\)\"; $img.Dispose\\(\\)')",
       "Bash(cp \"C:/Users/Stormrage/Downloads/cappgames-logo-512.png\" \"D:/DocumentosD/CAPPGAMES/WEB/cappgames-site/public/images/cappgames-logo-512.png\")",
-      "Bash(cp \"C:/Users/Stormrage/Downloads/cappgames-logo-180.png\" \"D:/DocumentosD/CAPPGAMES/WEB/cappgames-site/public/images/cappgames-logo-180.png\")"
+      "Bash(cp \"C:/Users/Stormrage/Downloads/cappgames-logo-180.png\" \"D:/DocumentosD/CAPPGAMES/WEB/cappgames-site/public/images/cappgames-logo-180.png\")",
+      "Bash(powershell -command 'Get-Item '\\\\''public/images/capp-games_sharebanner.png'\\\\'' | Select-Object Name, @{N='\\\\''SizeKB'\\\\'';E={[math]::Round\\($_.Length/1KB,1\\)}}')",
+      "Bash(powershell -command 'Get-Item '\\\\''banner.png'\\\\'' | Select-Object Name, @{N='\\\\''SizeKB'\\\\'';E={[math]::Round\\($_.Length/1KB,1\\)}}')",
+      "Bash(python -c \"from PIL import Image; img = Image.open\\('public/images/capp-games_sharebanner.png'\\); img.save\\('public/images/capp-games_sharebanner.webp', 'WEBP', quality=85\\); print\\('done'\\)\")",
+      "Bash(cwebp -q 85 public/images/capp-games_sharebanner.png -o public/images/capp-games_sharebanner.webp)",
+      "Bash(powershell *)"
     ]
   }
 }

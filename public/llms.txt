@@ -1,0 +1,45 @@
+# CAPP GAMES
+
+> Indie game studio creating free browser games and published board games. Founded by Carlos Pineda.
+
+Site: https://capp-games.com
+
+## About
+
+CAPP GAMES is an independent game studio focused on original games — both physical board games and free browser-based video games. All games are designed and developed by Carlos Pineda.
+
+## Games
+
+### Ransack (Board Game)
+- Page: https://capp-games.com/board-games/ransack
+- A strategic board game. Available for purchase. Art by Daniel Fandiño (@poi.son_art).
+
+### Fantasy Arena (Browser Game)
+- Page: https://capp-games.com/video-games/fantasy-arena
+- A free browser-based video game. Play at https://capp-games.com/video-games/fantasy-arena
+
+### Unnamed Water Game (In Development)
+- Page: https://capp-games.com/board-games/new-game
+- A new board game currently in development. No release date announced.
+
+## Pages
+
+- Home: https://capp-games.com/
+- Board Games: https://capp-games.com/board-games
+- Video Games: https://capp-games.com/video-games
+- About: https://capp-games.com/about
+- Terms of Service: https://capp-games.com/terms
+
+## Languages
+
+Site available in English (default), Spanish (/es/), and French (/fr/).
+
+## Contact
+
+Email: contact@capp-games.com
+Discord: https://discord.gg/8C9Z48nBRy
+Instagram: https://www.instagram.com/cappgames/
+
+## AI Usage Policy
+
+This site and its content may be referenced for informational purposes but may NOT be used for AI model training. See robots.txt for crawler directives.

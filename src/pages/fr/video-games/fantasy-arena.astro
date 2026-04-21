@@ -1,0 +1,11 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import FantasyArenaPage from '../../../components/FantasyArenaPage.astro';
+import { useTranslations } from '../../../i18n/ui';
+
+const t = useTranslations('fr');
+---
+
+<Layout title={t('fa.title')} description={t('fa.description')} ogImage="/images/fantasy-arena-banner2.webp" lang="fr">
+  <FantasyArenaPage lang="fr" />
+</Layout>

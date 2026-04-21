@@ -1,0 +1,109 @@
+---
+---
+
+<div id="cookie-banner" role="dialog" aria-label="Cookie consent" style="display:none">
+  <p>We use anonymous analytics to improve the site. No personal data is collected. <a href="/terms">Learn more</a></p>
+  <div class="cookie-actions">
+    <button id="cookie-decline">Decline</button>
+    <button id="cookie-accept" class="primary">Accept</button>
+  </div>
+</div>
+
+<script>
+  import { inject } from '@vercel/analytics';
+
+  const KEY = 'va-consent';
+  const consent = localStorage.getItem(KEY);
+
+  if (consent === 'accepted') {
+    inject();
+  } else if (!consent) {
+    const banner = document.getElementById('cookie-banner') as HTMLElement;
+    banner.style.display = 'flex';
+
+    document.getElementById('cookie-accept')?.addEventListener('click', () => {
+      localStorage.setItem(KEY, 'accepted');
+      banner.style.display = 'none';
+      inject();
+    });
+
+    document.getElementById('cookie-decline')?.addEventListener('click', () => {
+      localStorage.setItem(KEY, 'declined');
+      banner.style.display = 'none';
+    });
+  }
+</script>
+
+<style>
+  #cookie-banner {
+    position: fixed;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface, #1a1a2e);
+    border: 1px solid var(--border, #2e2e4a);
+    border-radius: 10px;
+    padding: 0.85rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    max-width: 600px;
+    width: calc(100% - 2rem);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    z-index: 9999;
+    font-size: 0.875rem;
+    color: var(--text-dim, #aaa);
+  }
+
+  #cookie-banner p {
+    flex: 1;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  #cookie-banner a {
+    color: var(--gold, #c9a84c);
+    text-decoration: underline;
+  }
+
+  .cookie-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .cookie-actions button {
+    padding: 0.35rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--border, #2e2e4a);
+    background: transparent;
+    color: var(--text-dim, #aaa);
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .cookie-actions button:hover {
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+  }
+
+  .cookie-actions button.primary {
+    background: var(--gold, #c9a84c);
+    border-color: var(--gold, #c9a84c);
+    color: #000;
+  }
+
+  .cookie-actions button.primary:hover {
+    background: #e0b85a;
+  }
+
+  @media (max-width: 500px) {
+    #cookie-banner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+  }
+</style>

@@ -1,0 +1,11 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import VideoGamesIndexPage from '../../../components/VideoGamesIndexPage.astro';
+import { useTranslations } from '../../../i18n/ui';
+
+const t = useTranslations('fr');
+---
+
+<Layout title={t('videogames.title')} description={t('videogames.description')} lang="fr">
+  <VideoGamesIndexPage lang="fr" />
+</Layout>

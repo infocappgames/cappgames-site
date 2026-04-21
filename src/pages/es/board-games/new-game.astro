@@ -1,0 +1,11 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import NewGamePage from '../../../components/NewGamePage.astro';
+import { useTranslations } from '../../../i18n/ui';
+
+const t = useTranslations('es');
+---
+
+<Layout title={t('newgame.title')} description={t('newgame.description')} lang="es">
+  <NewGamePage lang="es" />
+</Layout>

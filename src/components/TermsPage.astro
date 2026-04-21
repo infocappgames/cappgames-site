@@ -1,0 +1,131 @@
+---
+import { useTranslations, type Lang } from '../i18n/ui';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="page-header">
+  <div class="container">
+    <h1 set:html={t('terms.h1Html')} />
+    <div class="gold-divider"></div>
+    <p class="updated">{t('terms.lastUpdated')}</p>
+  </div>
+</section>
+
+<section class="tos-section">
+  <div class="container tos-content">
+
+    <p class="intro" set:html={t('terms.introHtml')} />
+
+    <div class="tos-block">
+      <h2>{t('terms.1.heading')}</h2>
+      <p>{t('terms.1.p1')}</p>
+      <p>{t('terms.1.p2')}</p>
+    </div>
+
+    <div class="tos-block">
+      <h2>{t('terms.2.heading')}</h2>
+      <p>{t('terms.2.intro')}</p>
+      <ul>
+        <li>{t('terms.2.li1')}</li>
+        <li>{t('terms.2.li2')}</li>
+        <li>{t('terms.2.li3')}</li>
+        <li>{t('terms.2.li4')}</li>
+      </ul>
+    </div>
+
+    <div class="tos-block">
+      <h2>{t('terms.3.heading')}</h2>
+      <p>{t('terms.3.p1')}</p>
+    </div>
+
+    <div class="tos-block">
+      <h2>{t('terms.4.heading')}</h2>
+      <p>{t('terms.4.p1')}</p>
+    </div>
+
+    <div class="tos-block">
+      <h2>{t('terms.5.heading')}</h2>
+      <p>{t('terms.5.p1')}</p>
+    </div>
+
+    <div class="tos-block">
+      <h2>{t('terms.6.heading')}</h2>
+      <p>{t('terms.6.p1')}</p>
+    </div>
+
+    <div class="tos-block">
+      <h2>{t('terms.7.heading')}</h2>
+      <p set:html={t('terms.7.p1Html')} />
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .page-header {
+    padding: 4rem 0 2rem;
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 0%, rgba(245,192,0,0.05) 0%, transparent 70%),
+      var(--bg);
+  }
+  .page-header h1 { margin-bottom: 1rem; }
+
+  .updated {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    margin: 0.5rem 0 0;
+  }
+
+  .tos-section { padding: 3rem 0 5rem; }
+
+  .tos-content { max-width: 720px; }
+
+  .intro {
+    color: var(--text-dim);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    font-size: 0.95rem;
+  }
+
+  .tos-block {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .tos-block:last-child { border-bottom: none; margin-bottom: 0; }
+
+  .tos-block h2 {
+    font-size: 1rem;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.03em;
+  }
+
+  .tos-block p {
+    color: var(--text-dim);
+    line-height: 1.8;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+  }
+  .tos-block p:last-child { margin-bottom: 0; }
+
+  .tos-block ul {
+    color: var(--text-dim);
+    line-height: 1.8;
+    font-size: 0.95rem;
+    padding-left: 1.5rem;
+    margin: 0.5rem 0 0;
+  }
+  .tos-block ul li { margin-bottom: 0.4rem; }
+
+  .inline-link {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(245,192,0,0.3);
+    transition: border-color 0.2s;
+  }
+  .inline-link:hover { border-color: var(--gold); }
+</style>

@@ -1,0 +1,197 @@
+---
+import { useTranslations, type Lang } from '../i18n/ui';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const videoGamesHref = getRelativeLocaleUrl(lang, '/video-games');
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoGame',
+  name: 'Auto-Chess: Fantasy Arena',
+  description: 'Free browser strategy game. Summon heroes, deploy them on a hex grid, and conquer The Abyss.',
+  url: 'https://cappgames.com/video-games/fantasy-arena',
+  image: 'https://cappgames.com/images/fantasy-arena-banner2.webp',
+  gamePlatform: 'Web Browser',
+  applicationCategory: 'Game',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  publisher: { '@type': 'Organization', name: 'CAPP GAMES' },
+  author: { '@type': 'Person', name: 'Andrés Pineda' },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+<!-- ─── Hero ─────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <img src="/images/fantasy-arena-banner2.webp" alt="" class="hero-banner-img" fetchpriority="high" />
+    <div class="hero-overlay"></div>
+    <div class="hero-emojis" aria-hidden="true">
+      <span class="emoji-float" style="top: 8%; right: 32%; font-size: 10rem;">⚔️</span>
+      <span class="emoji-float" style="top: 10%; right: 6%; font-size: 11rem;">💚</span>
+      <span class="emoji-float" style="top: 26%; right: 14%; font-size: 12rem;">🧙</span>
+      <span class="emoji-float" style="bottom: 12%; right: 24%; font-size: 10rem;">🏹</span>
+      <span class="emoji-float" style="bottom: 10%; right: 12%; font-size: 10rem;">🗡️</span>
+      <span class="emoji-float" style="top: 5%; left: 3%; font-size: 10rem;">🕷️</span>
+      <span class="emoji-float" style="top: 8%; left: 20%; font-size: 12rem; transform: scaleX(-1);">🐉</span>
+      <span class="emoji-float" style="bottom: 10%; left: 18%; font-size: 10rem;">🔮</span>
+    </div>
+  </div>
+  <div class="hero-content container">
+    <a href={videoGamesHref} class="back-link">{t('fa.back')}</a>
+    <div class="hero-badge">{t('fa.badge')}</div>
+    <h1>Auto-Chess:<br /><span class="gold">Fantasy Arena</span></h1>
+    <p class="hero-desc" set:html={t('fa.heroDescHtml')} />
+    <a href="https://fantasy-arena-iota.vercel.app" target="_blank" rel="noopener" class="btn btn-gold play-btn">{t('fa.playNow')}</a>
+  </div>
+</section>
+
+<!-- ─── Stats ─────────────────────────────────────────────── -->
+<div class="stats-bar">
+  <div class="container stats-inner">
+    <div class="stat"><span class="stat-icon">&#128176;</span><span class="stat-label">{t('fa.stat.free')}</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><span class="stat-icon">&#127760;</span><span class="stat-label">{t('fa.stat.browser')}</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><span class="stat-icon">&#129490;</span><span class="stat-label">{t('fa.stat.solo')}</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><span class="stat-icon">&#127942;</span><span class="stat-label">{t('fa.stat.scores')}</span></div>
+  </div>
+</div>
+
+<!-- ─── Content ──────────────────────────────────────────── -->
+<section class="features">
+  <div class="container">
+
+    <div class="section-header">
+      <h2>{t('fa.what.heading')}</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <p class="game-intro">{t('fa.what.intro')}</p>
+
+    <div class="section-header" style="margin-top:3rem">
+      <h2>{t('fa.heroes.heading')}</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="hero-grid">
+      <div class="hero-card">
+        <div class="hero-icon">&#9876;&#65039;</div>
+        <div class="hero-name">Warrior</div>
+        <span class="role-badge role-tank">Tank</span>
+        <p class="hero-traits">{t('fa.hero.warrior.traits')}</p>
+      </div>
+      <div class="hero-card">
+        <div class="hero-icon">&#128154;</div>
+        <div class="hero-name">Healer</div>
+        <span class="role-badge role-support">Support</span>
+        <p class="hero-traits">{t('fa.hero.healer.traits')}</p>
+      </div>
+      <div class="hero-card">
+        <div class="hero-icon">&#128481;&#65039;</div>
+        <div class="hero-name">Assassin</div>
+        <span class="role-badge role-finisher">Finisher</span>
+        <p class="hero-traits">{t('fa.hero.assassin.traits')}</p>
+      </div>
+      <div class="hero-card">
+        <div class="hero-icon">&#127993;</div>
+        <div class="hero-name">Archer</div>
+        <span class="role-badge role-sniper">Sniper</span>
+        <p class="hero-traits">{t('fa.hero.archer.traits')}</p>
+      </div>
+      <div class="hero-card">
+        <div class="hero-icon">&#129497;</div>
+        <div class="hero-name">Mage</div>
+        <span class="role-badge role-aoe">AoE Blaster</span>
+        <p class="hero-traits">{t('fa.hero.mage.traits')}</p>
+      </div>
+    </div>
+
+    <div class="section-header" style="margin-top:3rem">
+      <h2>{t('fa.htp.heading')}</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="steps-row">
+      <div class="step-card"><div class="step-icon">&#127922;</div><div class="step-name">{t('fa.step.discover.name')}</div><div class="step-desc">{t('fa.step.discover.desc')}</div></div>
+      <div class="step-arrow">&rarr;</div>
+      <div class="step-card"><div class="step-icon">&#128722;</div><div class="step-name">{t('fa.step.shop.name')}</div><div class="step-desc">{t('fa.step.shop.desc')}</div></div>
+      <div class="step-arrow">&rarr;</div>
+      <div class="step-card"><div class="step-icon">&#128212;</div><div class="step-name">{t('fa.step.deploy.name')}</div><div class="step-desc">{t('fa.step.deploy.desc')}</div></div>
+      <div class="step-arrow">&rarr;</div>
+      <div class="step-card"><div class="step-icon">&#9876;&#65039;</div><div class="step-name">{t('fa.step.battle.name')}</div><div class="step-desc">{t('fa.step.battle.desc')}</div></div>
+      <div class="step-arrow">&rarr;</div>
+      <div class="step-card"><div class="step-icon">&#128176;</div><div class="step-name">{t('fa.step.loot.name')}</div><div class="step-desc">{t('fa.step.loot.desc')}</div></div>
+    </div>
+
+    <div class="section-header" style="margin-top:3rem">
+      <h2>{t('fa.tips.heading')}</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <ul class="tips-list">
+      <li>{t('fa.tip.1')}</li>
+      <li>{t('fa.tip.2')}</li>
+      <li>{t('fa.tip.3')}</li>
+      <li>{t('fa.tip.4')}</li>
+      <li>{t('fa.tip.5')}</li>
+    </ul>
+
+    <div class="play-cta">
+      <a href="https://fantasy-arena-iota.vercel.app" target="_blank" rel="noopener" class="btn btn-gold">{t('fa.playNow')}</a>
+      <p class="play-note">{t('fa.playNote')}</p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700;800&display=swap');
+  h1, h2, h3, h4 { font-family: 'Exo 2', sans-serif; }
+
+  .hero { position: relative; padding: 5rem 0 4rem; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hero-banner-img { width: 100%; height: 100%; object-fit: cover; object-position: center 65%; display: block; }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(10,10,10,0.82) 40%, rgba(10,10,10,0.3) 100%), linear-gradient(to top, rgba(10,10,10,0.6) 0%, transparent 40%); }
+  .hero-emojis { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+  .emoji-float { position: absolute; line-height: 1; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5)); }
+  .hero-content { position: relative; z-index: 2; max-width: 700px; }
+  .hero-badge { display: inline-block; padding: 0.3rem 0.9rem; background: rgba(91,175,245,0.12); color: #5baff5; border: 1px solid rgba(91,175,245,0.3); border-radius: 999px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.25rem; }
+  .hero h1 { margin-bottom: 1.25rem; line-height: 1.15; }
+  .hero-desc { font-size: 1.05rem; color: var(--text-dim); line-height: 1.75; max-width: 580px; margin-bottom: 2rem; }
+  .play-btn { font-size: 1.1rem; padding: 1rem 2.5rem; }
+  .stats-bar { background: var(--card-bg); border-top: 1px solid rgba(91,175,245,0.4); border-bottom: 1px solid var(--border); padding: 1rem 0; }
+  .stats-inner { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
+  .stat { display: flex; align-items: center; gap: 0.5rem; }
+  .stat-icon { font-size: 1.1rem; }
+  .stat-label { font-size: 0.9rem; font-weight: 500; }
+  .stat-divider { width: 1px; height: 20px; background: var(--border); }
+  .features { padding: 2rem 0 5rem; }
+  .game-intro { font-size: 1rem; color: var(--text-dim); line-height: 1.8; margin: 0 0 1rem; }
+  .steps-row { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+  .step-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1rem; text-align: center; width: 120px; transition: border-color 0.2s; }
+  .step-card:hover { border-color: var(--gold); }
+  .step-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .step-name { font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--gold); margin-bottom: 0.3rem; }
+  .step-desc { font-size: 0.78rem; color: var(--text-dim); }
+  .step-arrow { color: var(--text-dim); font-size: 1.2rem; flex-shrink: 0; }
+  .hero-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+  .hero-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 0.75rem; text-align: center; transition: border-color 0.2s; }
+  .hero-card:hover { border-color: rgba(91,175,245,0.5); }
+  .hero-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .hero-name { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--text); margin-bottom: 0.5rem; }
+  .role-badge { display: inline-block; padding: 0.2rem 0.65rem; border-radius: 999px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 0.6rem; }
+  .role-tank     { background: rgba(80,120,220,0.2); color: #7aabff; }
+  .role-support  { background: rgba(80,200,120,0.2); color: #6fdda0; }
+  .role-finisher { background: rgba(220,60,60,0.2);  color: #ff8080; }
+  .role-sniper   { background: rgba(180,140,60,0.2); color: #e0b84a; }
+  .role-aoe      { background: rgba(150,80,220,0.2); color: #c090ff; }
+  .hero-traits { font-size: 0.78rem; color: var(--text-dim); margin: 0; line-height: 1.5; }
+  .tips-list { list-style: none; padding: 0; margin: 0 0 3rem; display: flex; flex-direction: column; gap: 0.65rem; }
+  .tips-list li { font-size: 0.95rem; color: var(--text-dim); padding-left: 1.4rem; position: relative; line-height: 1.6; }
+  .tips-list li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); }
+  .play-cta { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+  .play-note { color: var(--text-dim); font-size: 0.85rem; margin: 0; }
+  @media (max-width: 768px) { .hero-grid { grid-template-columns: repeat(3, 1fr); } .step-arrow { display: none; } .steps-row { gap: 0.75rem; } }
+  @media (max-width: 600px) { .stat-divider { display: none; } .hero-grid { grid-template-columns: repeat(2, 1fr); } .step-card { width: 100px; } .hero-emojis { display: none; } }
+</style>

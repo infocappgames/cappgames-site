@@ -1,0 +1,273 @@
+---
+import { useTranslations, type Lang } from '../i18n/ui';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const boardGamesHref = getRelativeLocaleUrl(lang, '/board-games');
+
+const captions = [
+  t('ransack.caption0'), t('ransack.caption1'), t('ransack.caption2'), t('ransack.caption3'),
+  t('ransack.caption4'), t('ransack.caption5'), t('ransack.caption6'), t('ransack.caption7'),
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Game',
+  name: 'Ransack',
+  description: 'A medieval-fantasy card game for 3–6 players where crafty thieves compete to escape a dungeon with the most treasure.',
+  url: 'https://cappgames.com/board-games/ransack',
+  image: 'https://cappgames.com/images/ransack-cover.webp',
+  publisher: { '@type': 'Organization', name: 'CAPP GAMES' },
+  author: { '@type': 'Person', name: 'Andrés Pineda' },
+  numberOfPlayers: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 6 },
+  gameLocation: 'Tabletop',
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+<!-- ─── Hero ─────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="/images/ransack-banner2.webp" alt="" class="hero-bg-img" aria-hidden="true" fetchpriority="high" />
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content container">
+    <a href={boardGamesHref} class="back-link">{t('ransack.back')}</a>
+    <div class="hero-badge">{t('ransack.badge')}</div>
+  </div>
+</section>
+
+<!-- ─── Stats bar ─────────────────────────────────────────── -->
+<div class="stats-bar">
+  <div class="container stats-inner">
+    <div class="stat"><span class="stat-icon">&#128101;</span><span class="stat-label">{t('ransack.stat.players')}</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><span class="stat-icon">&#9200;</span><span class="stat-label">{t('ransack.stat.time')}</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><span class="stat-icon">&#127774;</span><span class="stat-label">{t('ransack.stat.age')}</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat"><span class="stat-icon">&#128218;</span><span class="stat-label">{t('ransack.stat.cards')}</span></div>
+  </div>
+</div>
+
+<!-- ─── Main content ──────────────────────────────────────── -->
+<section class="content">
+  <div class="container content-grid">
+
+    <div class="desc-col">
+      <h2>{t('ransack.about.heading')}</h2>
+      <div class="gold-divider" style="margin: 1rem 0;"></div>
+      <p>{t('ransack.about.p1')}</p>
+      <p>{t('ransack.about.p2')}</p>
+      <p>{t('ransack.about.p3')}</p>
+      <div class="btn-group">
+        <a href="https://boardgamegeek.com/boardgame/406870/ransack" target="_blank" rel="noopener" class="btn btn-gold">{t('ransack.btn.bgg')}</a>
+        <a href="https://www.youtube.com/@CappBoardGames" target="_blank" rel="noopener" class="btn btn-outline">{t('ransack.btn.howto')}</a>
+        <span class="btn btn-outline btn-disabled">{t('ransack.btn.buy')}</span>
+        <a href="https://www.instagram.com/ransack_game/" target="_blank" rel="noopener" class="btn btn-ig">IG @ransack_game</a>
+      </div>
+    </div>
+
+    <div class="photo-col">
+      <div class="carousel" id="ransack-carousel" data-captions={JSON.stringify(captions)}>
+        <button class="carousel-btn carousel-btn--prev" aria-label="Previous photo">&#8249;</button>
+        <div class="carousel-track-wrap">
+          <div class="carousel-track">
+            <img src="/images/ransack-photo.webp"         alt={t('ransack.caption0')} class="carousel-slide" fetchpriority="high" />
+            <img src="/images/Ransack_BoxContent.webp"    alt={t('ransack.caption1')} class="carousel-slide" loading="lazy" />
+            <img src="/images/Ransack_CardTypes.webp"     alt={t('ransack.caption2')} class="carousel-slide" loading="lazy" />
+            <img src="/images/Ransack_showingCards.jpeg" alt={t('ransack.caption3')} class="carousel-slide" loading="lazy" />
+            <img src="/images/Ransack_POV_playing.webp"   alt={t('ransack.caption4')} class="carousel-slide" loading="lazy" />
+            <img src="/images/Ransack_playing.webp"       alt={t('ransack.caption5')} class="carousel-slide" loading="lazy" />
+            <img src="/images/Ransack_POV_playing3.webp"  alt={t('ransack.caption6')} class="carousel-slide" loading="lazy" />
+            <img src="/images/Ransack_POV_playing2.webp"  alt={t('ransack.caption7')} class="carousel-slide" loading="lazy" />
+          </div>
+        </div>
+        <button class="carousel-btn carousel-btn--next" aria-label="Next photo">&#8250;</button>
+      </div>
+      <div class="carousel-dots" id="ransack-dots"></div>
+      <p class="photo-caption" id="ransack-caption" aria-live="polite" aria-atomic="true">{t('ransack.caption0')}</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── How It's Played ─────────────────────────────────────── -->
+<section class="how-to-play">
+  <div class="container">
+    <div class="section-header">
+      <h2>{t('ransack.htp.heading')}</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="htp-grid">
+      <div class="htp-card">
+        <div class="htp-icon">&#128176;</div>
+        <h3>{t('ransack.htp.1.heading')}</h3>
+        <p>{t('ransack.htp.1.p')}</p>
+      </div>
+      <div class="htp-card">
+        <div class="htp-icon">&#9876;</div>
+        <h3>{t('ransack.htp.2.heading')}</h3>
+        <p>{t('ransack.htp.2.p')}</p>
+      </div>
+      <div class="htp-card">
+        <div class="htp-icon">&#128126;</div>
+        <h3>{t('ransack.htp.3.heading')}</h3>
+        <p>{t('ransack.htp.3.p')}</p>
+      </div>
+      <div class="htp-card">
+        <div class="htp-icon">&#127942;</div>
+        <h3>{t('ransack.htp.4.heading')}</h3>
+        <p>{t('ransack.htp.4.p')}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Artist Credits ─────────────────────────────────────── -->
+<section class="credits">
+  <div class="container">
+    <div class="section-header">
+      <h2>{t('ransack.credits.heading')}</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="credits-card">
+      <div class="credits-info">
+        <span class="credits-role">{t('ransack.credits.role')}</span>
+        <span class="credits-name">Daniel Fandiño</span>
+        <a href="https://www.instagram.com/poi.son_art/" target="_blank" rel="noopener" class="credits-ig">&#64;poi.son_art</a>
+      </div>
+      <div class="credits-art">
+        <img src="/images/Artist_dag.png"  alt="Card illustration by Daniel Fandiño"           class="credits-art-img" loading="lazy" />
+        <img src="/images/Artist_Lich.png" alt="Lich card illustration by Daniel Fandiño"      class="credits-art-img" loading="lazy" />
+        <img src="/images/Artist_Gobl.png" alt="Goblin card illustration by Daniel Fandiño"    class="credits-art-img" loading="lazy" />
+        <img src="/images/Artist_Merc.png" alt="Mercenary card illustration by Daniel Fandiño" class="credits-art-img" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ─────────────────────────────────────────────────── -->
+<section class="faq">
+  <div class="container">
+    <div class="section-header">
+      <h2>{t('ransack.faq.heading')}</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="faq-list">
+      {[1,2,3,4,5,6,7,8].map(n => (
+        <details class="faq-item">
+          <summary class="faq-question">{t(`ransack.faq.${n}.q` as any)}</summary>
+          <div class="faq-answer"><p>{t(`ransack.faq.${n}.a` as any)}</p></div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { position: relative; height: 65vh; min-height: 380px; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; }
+  .hero-bg-img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(13,13,13,0.15) 0%, rgba(13,13,13,0.25) 60%, rgba(13,13,13,0.92) 100%); }
+  .hero-content { position: relative; z-index: 1; padding-top: 2rem; }
+  .hero-badge { display: inline-block; padding: 0.3rem 0.9rem; background: rgba(245,192,0,0.12); color: var(--gold); border: 1px solid rgba(245,192,0,0.3); border-radius: 999px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+  .stats-bar { background: var(--card-bg); border-top: 1px solid var(--gold); border-bottom: 1px solid var(--border); padding: 1rem 0; }
+  .stats-inner { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
+  .stat { display: flex; align-items: center; gap: 0.5rem; }
+  .stat-icon { font-size: 1.1rem; }
+  .stat-label { font-size: 0.9rem; font-weight: 500; color: var(--text); }
+  .stat-divider { width: 1px; height: 20px; background: var(--border); }
+  .content { padding: 3rem 0 5rem; }
+  .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .desc-col h2 { margin-top: 1rem; }
+  .desc-col p { color: var(--text-dim); line-height: 1.75; }
+  .btn-group { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+  .btn-disabled { opacity: 0.45; cursor: not-allowed; }
+  .btn-ig { background: transparent; color: var(--text-dim); border: 1px solid var(--border); }
+  .btn-ig:hover { color: var(--text); border-color: rgba(255,255,255,0.25); opacity: 1; }
+  .photo-col { display: flex; flex-direction: column; gap: 0.5rem; }
+  .photo-caption { font-size: 0.8rem; color: var(--text-dim); text-align: center; margin: 0; }
+  .how-to-play { padding: 1rem 0 4rem; border-top: 1px solid var(--border); }
+  .htp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; }
+  .htp-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; transition: border-color 0.2s; }
+  .htp-card:hover { border-color: var(--gold); }
+  .htp-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+  .htp-card h3 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--gold); }
+  .htp-card p { font-size: 0.9rem; color: var(--text-dim); margin: 0; line-height: 1.6; }
+  .carousel { position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: var(--card-bg); }
+  .carousel-track-wrap { overflow: hidden; }
+  .carousel-track { display: flex; transition: transform 0.4s ease; }
+  .carousel-slide { min-width: 100%; width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+  .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; background: rgba(13,13,13,0.65); color: var(--gold); border: 1px solid rgba(245,192,0,0.25); border-radius: 50%; width: 2.2rem; height: 2.2rem; font-size: 1.5rem; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, border-color 0.2s; }
+  .carousel-btn:hover { background: rgba(245,192,0,0.15); border-color: var(--gold); }
+  .carousel-btn--prev { left: 0.5rem; }
+  .carousel-btn--next { right: 0.5rem; }
+  .carousel-dots { display: flex; justify-content: center; gap: 0.4rem; margin-top: 0.6rem; }
+  .carousel-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); border: none; cursor: pointer; padding: 0; transition: background 0.2s; }
+  .carousel-dot.active { background: var(--gold); }
+  .credits { padding: 1rem 0 3rem; border-top: 1px solid var(--border); }
+  .credits-card { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; max-width: 800px; margin: 0 auto; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
+  .credits-info { display: flex; flex-direction: column; gap: 0.5rem; }
+  .credits-role { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); opacity: 0.8; }
+  .credits-name { font-size: 1.1rem; color: var(--text); font-weight: 600; }
+  .credits-ig { font-size: 0.85rem; color: var(--text-dim); text-decoration: none; border: 1px solid var(--border); border-radius: 999px; padding: 0.2rem 0.75rem; width: fit-content; transition: color 0.2s, border-color 0.2s; }
+  .credits-ig:hover { color: #f06090; border-color: rgba(225,48,108,0.4); }
+  .credits-art { display: flex; gap: 0.75rem; flex-shrink: 0; }
+  .credits-art-img { height: 110px; width: auto; border-radius: calc(var(--radius) - 2px); border: 1px solid var(--border); object-fit: cover; transition: transform 0.2s, border-color 0.2s; }
+  .credits-art-img:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .faq { padding: 1rem 0 5rem; border-top: 1px solid var(--border); }
+  .faq-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.5rem; }
+  .faq-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color 0.2s; }
+  .faq-item[open] { border-color: var(--gold); }
+  .faq-question { padding: 1.25rem 1.5rem; cursor: pointer; font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.02em; color: var(--text); list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .faq-question::-webkit-details-marker { display: none; }
+  .faq-question::after { content: '+'; font-size: 1.4rem; color: var(--gold); flex-shrink: 0; transition: transform 0.2s; }
+  .faq-item[open] .faq-question::after { content: '−'; }
+  .faq-answer { padding: 0 1.5rem 1.25rem; }
+  .faq-answer p { color: var(--text-dim); line-height: 1.75; margin: 0; font-size: 0.9rem; }
+  @media (max-width: 600px) {
+    .content-grid { grid-template-columns: 1fr; }
+    .photo-col { order: -1; }
+    .stat-divider { display: none; }
+    .credits-card { flex-direction: column; }
+    .credits-art { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
+    .credits-art-img { height: auto; width: 100%; aspect-ratio: 1; }
+  }
+</style>
+
+<script>
+  const carousel  = document.getElementById('ransack-carousel') as HTMLElement;
+  const captions  = JSON.parse(carousel.dataset.captions || '[]') as string[];
+  const track     = carousel.querySelector<HTMLElement>('.carousel-track')!;
+  const slides    = carousel.querySelectorAll<HTMLElement>('.carousel-slide');
+  const dotsWrap  = document.getElementById('ransack-dots')!;
+  const caption   = document.getElementById('ransack-caption')!;
+  const btnPrev   = carousel.querySelector<HTMLButtonElement>('.carousel-btn--prev')!;
+  const btnNext   = carousel.querySelector<HTMLButtonElement>('.carousel-btn--next')!;
+
+  let current = 0;
+  const dots: HTMLButtonElement[] = [];
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', `Go to photo ${i + 1}`);
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+    dots.push(d);
+  });
+
+  function goTo(index: number) {
+    dots[current].classList.remove('active');
+    current = (index + slides.length) % slides.length;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots[current].classList.add('active');
+    caption.textContent = captions[current];
+  }
+
+  btnPrev.addEventListener('click', () => goTo(current - 1));
+  btnNext.addEventListener('click', () => goTo(current + 1));
+</script>

@@ -28,6 +28,7 @@ export default defineConfig({
       clientSecret: import.meta.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
+  session: { maxAge: 7 * 24 * 60 * 60 },
   callbacks: {
     async jwt({ token, user }) {
       if (user && user.email) {

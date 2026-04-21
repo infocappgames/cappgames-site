@@ -1,0 +1,86 @@
+---
+import { useTranslations, type Lang } from '../i18n/ui';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const homeHref = getRelativeLocaleUrl(lang, '/');
+const ransackHref = getRelativeLocaleUrl(lang, '/board-games/ransack');
+const newGameHref = getRelativeLocaleUrl(lang, '/board-games/new-game');
+---
+
+<section class="page">
+  <div class="container">
+    <div class="section-header">
+      <h1>{t('boardgames.h1')}</h1>
+      <div class="gold-divider"></div>
+      <p class="page-sub">{t('boardgames.sub')}</p>
+    </div>
+
+    <a href={homeHref} class="back-link page-back">{t('boardgames.back')}</a>
+
+    <div class="game-grid">
+
+      <a href={ransackHref} class="card game-card">
+        <div class="card-img-wrap">
+          <img src="/images/ransack-cover.webp" alt="Ransack box cover" class="card-img" loading="lazy" />
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="tag tag-gold">{t('boardgames.ransack.tag')}</span>
+          </div>
+          <h2>Ransack</h2>
+          <p class="card-desc">{t('boardgames.ransack.desc')}</p>
+          <div class="card-meta">
+            <span>{t('boardgames.ransack.meta1')}</span>
+            <span class="dot">&#183;</span>
+            <span>{t('boardgames.ransack.meta2')}</span>
+            <span class="dot">&#183;</span>
+            <span>{t('boardgames.ransack.meta3')}</span>
+          </div>
+          <span class="card-cta">{t('boardgames.ransack.cta')}</span>
+        </div>
+      </a>
+
+      <a href={newGameHref} class="card game-card game-card-soon">
+        <div class="card-img-wrap">
+          <img src="/images/UpcomingWaterGame.webp" alt="New water-themed board game in development" class="card-img" loading="lazy" />
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <span class="tag tag-gray">{t('boardgames.newgame.tag')}</span>
+          </div>
+          <h2>{t('boardgames.newgame.title')}</h2>
+          <p class="card-desc">{t('boardgames.newgame.desc')}</p>
+          <div class="card-meta card-meta-dim">
+            <span>{t('boardgames.newgame.meta')}</span>
+          </div>
+          <span class="card-cta card-cta-dim">{t('boardgames.newgame.cta')}</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .page { padding: 3rem 0 5rem; }
+  .page-sub { color: var(--text-dim); font-size: 1.05rem; margin: 0; }
+  .page-back { display: inline-flex; margin-bottom: 1rem; }
+  .game-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .game-card { display: flex; flex-direction: column; text-decoration: none; color: var(--text); }
+  .card-img-wrap { width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #1a1a1a; flex-shrink: 0; }
+  .card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; display: block; }
+  .game-card:hover .card-img { transform: scale(1.04); }
+  .card-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; flex: 1; }
+  .card-top { margin-bottom: 0.25rem; }
+  .card-body h2 { font-size: 1.5rem; color: var(--text); }
+  .card-desc { color: var(--text-dim); font-size: 0.95rem; line-height: 1.65; margin: 0; flex: 1; }
+  .card-meta { display: flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; color: var(--gold); font-weight: 500; }
+  .card-meta-dim { color: var(--text-dim); }
+  .dot { opacity: 0.4; }
+  .card-cta { color: var(--gold); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.04em; margin-top: 0.5rem; }
+  .card-cta-dim { color: var(--text-dim); }
+  .game-card-soon { opacity: 0.8; }
+</style>

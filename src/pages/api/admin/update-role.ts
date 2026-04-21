@@ -43,7 +43,20 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 
-  await db.update(users).set({ role: newRole }).where(eq(users.email, email));
+  try {
+    const result = await db.update(users).set({ role: newRole }).where(eq(users.email, email));
+    if (result.rowsAffected === 0) {
+      return new Response(JSON.stringify({ error: 'User not found' }), {
+        status: 404,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+  } catch {
+    return new Response(JSON.stringify({ error: 'Database error' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
 
   return new Response(JSON.stringify({ ok: true }), {
     status: 200,

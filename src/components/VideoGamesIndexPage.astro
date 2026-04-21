@@ -1,0 +1,96 @@
+---
+import { useTranslations, type Lang } from '../i18n/ui';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const homeHref = getRelativeLocaleUrl(lang, '/');
+const faHref = getRelativeLocaleUrl(lang, '/video-games/fantasy-arena');
+---
+
+<section class="page">
+  <div class="container">
+    <div class="section-header">
+      <h1>{t('videogames.h1')}</h1>
+      <div class="gold-divider"></div>
+      <p class="page-sub">{t('videogames.sub')}</p>
+    </div>
+
+    <a href={homeHref} class="back-link page-back">{t('videogames.back')}</a>
+
+    <div class="card game-card">
+      <a href={faHref} class="card-overlay-link" aria-label={t('home.fa.ariaLabel')}></a>
+      <div class="fa-hex-card featured-img-wrap">
+        <svg class="fa-hex-svg" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="fa-bg" cx="50%" cy="50%" r="70%">
+              <stop offset="0%" stop-color="#0d1530"/>
+              <stop offset="100%" stop-color="#050b18"/>
+            </radialGradient>
+            <radialGradient id="fa-glow" cx="50%" cy="50%" r="40%">
+              <stop offset="0%" stop-color="rgba(91,175,245,0.12)"/>
+              <stop offset="100%" stop-color="rgba(91,175,245,0)"/>
+            </radialGradient>
+            <pattern id="hexgrid" x="25" y="0" width="150" height="86.6" patternUnits="userSpaceOnUse">
+              <polygon points="50,0 25,43.3 -25,43.3 -50,0 -25,-43.3 25,-43.3" fill="none" stroke="rgba(91,175,245,0.22)" stroke-width="1.5"/>
+              <polygon points="125,43.3 100,86.6 50,86.6 25,43.3 50,0 100,0" fill="none" stroke="rgba(91,175,245,0.22)" stroke-width="1.5"/>
+            </pattern>
+          </defs>
+          <rect width="600" height="200" fill="url(#fa-bg)"/>
+          <rect width="600" height="200" fill="url(#hexgrid)"/>
+          <rect width="600" height="200" fill="url(#fa-glow)"/>
+        </svg>
+        <div class="fa-overlay-content">
+          <div class="fa-heroes">
+            <span>&#9876;&#65039;</span><span>&#129497;</span><span>&#127993;</span><span>&#128154;</span><span>&#128481;&#65039;</span>
+          </div>
+          <span class="fa-label">Auto-Chess: Fantasy Arena</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="featured-tags">
+          <span class="tag tag-blue">{t('home.fa.tagBrowser')}</span>
+          <span class="tag tag-update">{t('home.fa.tagUpdate')}</span>
+        </div>
+        <h2>Auto-Chess: Fantasy Arena</h2>
+        <p class="card-desc">{t('videogames.fa.desc')}</p>
+        <p class="card-desc update-teaser">{t('home.fa.desc2')}</p>
+        <div class="featured-actions">
+          <a href="https://fantasy-arena-iota.vercel.app" target="_blank" rel="noopener" class="btn btn-gold play-now-btn">{t('home.fa.playNow')}</a>
+          <a href={faHref} class="details-link">{t('home.fa.moreInfo')}</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .page { padding: 3rem 0 5rem; }
+  .page-sub { color: var(--text-dim); font-size: 1.05rem; margin: 0; }
+  .page-back { display: inline-flex; margin-bottom: 1rem; }
+  .game-card { display: flex; flex-direction: column; color: var(--text); position: relative; }
+  .card-overlay-link { position: absolute; inset: 0; z-index: 0; }
+  .fa-hex-card { position: relative; background: #050b18; overflow: hidden; width: 100%; aspect-ratio: 3/1; max-height: 220px; }
+  .fa-hex-svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .fa-overlay-content { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; z-index: 1; }
+  .fa-heroes { display: flex; gap: 2.2rem; font-size: 2.86rem; }
+  .fa-label { font-family: 'Cinzel', serif; font-size: 2.3rem; letter-spacing: 0.12em; background: linear-gradient(90deg, #f0c040, #f08040); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .card-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.65rem; background: var(--card-bg); border: 1px solid var(--border); border-top: none; }
+  .featured-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .card-body h2 { font-size: 1.4rem; color: var(--text); }
+  .card-desc { color: var(--text-dim); font-size: 0.95rem; line-height: 1.65; margin: 0; }
+  .update-teaser { font-style: italic; border-left: 2px solid rgba(120,180,255,0.3); padding-left: 0.75rem; }
+  .featured-actions { display: flex; align-items: center; justify-content: center; gap: 1.25rem; position: relative; z-index: 1; margin-top: 0.25rem; }
+  .play-now-btn { font-size: 0.95rem; padding: 0.6rem 1.5rem; }
+  .details-link { color: var(--text-dim); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; transition: color 0.2s; }
+  .details-link:hover { color: var(--gold); }
+  .tag-update { background: rgba(100,160,255,0.12); color: #80b8ff; border-color: rgba(100,160,255,0.3); }
+  @media (max-width: 640px) {
+    .fa-label { font-size: 1.2rem; }
+    .fa-heroes { font-size: 1.8rem; gap: 1rem; }
+    .fa-overlay-content { gap: 0.1rem; }
+    .fa-hex-card { max-height: 160px; }
+  }
+</style>

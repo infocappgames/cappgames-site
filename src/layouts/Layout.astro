@@ -1,31 +1,41 @@
 ---
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import CookieConsent from '../components/CookieConsent.astro';
 import '../styles/global.css';
-import Analytics from '@vercel/analytics/astro';
 
 interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
   jsonLd?: object;
+  lang?: string;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://cappgames.com');
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://capp-games.com');
+
+const siteBase = (Astro.site?.href ?? 'https://capp-games.com').replace(/\/$/, '');
+const localeStripped = Astro.url.pathname.replace(/^\/(es|fr)/, '');
+const basePath = (localeStripped === '' ? '/' : localeStripped).replace(/(?<=.)\/$/,  '') || '/';
 
 const {
   title,
   description = 'CAPP GAMES — Games born from imagination. Browser games and board games by Carlos Pineda.',
   ogImage = '/images/capp-games_sharebanner.png',
+  ogImageWidth = 1200,
+  ogImageHeight = 630,
   jsonLd,
+  lang = 'en',
 } = Astro.props;
 
 const orgJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'CAPP GAMES',
-  url: 'https://cappgames.com',
-  logo: 'https://cappgames.com/images/capp-logo.png',
+  url: 'https://capp-games.com',
+  logo: 'https://capp-games.com/images/capp-logo.png',
   description: 'Indie game studio creating free browser games and published board games.',
   sameAs: [
     'https://www.instagram.com/cappgames/',
@@ -41,7 +51,7 @@ const ogImageURL = new URL(ogImage, Astro.site ?? 'https://cappgames.com').href;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -51,8 +61,16 @@ const ogImageURL = new URL(ogImage, Astro.site ?? 'https://cappgames.com').href;
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL.href} />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/images/capp-logo.png" />
+    <!-- hreflang: multi-language SEO -->
+    <link rel="alternate" hreflang="en"       href={`${siteBase}${basePath}`} />
+    <link rel="alternate" hreflang="es"       href={`${siteBase}/es${basePath === '/' ? '' : basePath}`} />
+    <link rel="alternate" hreflang="fr"       href={`${siteBase}/fr${basePath === '/' ? '' : basePath}`} />
+    <link rel="alternate" hreflang="x-default" href={`${siteBase}${basePath}`} />
+
+    <!-- Favicon & touch icons -->
+    <link rel="icon" type="image/png" href="/images/cappgames-logo-180.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/cappgames-logo-180.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Open Graph (Facebook, Discord, WhatsApp, etc.) -->
     <meta property="og:type" content="website" />
@@ -60,6 +78,9 @@ const ogImageURL = new URL(ogImage, Astro.site ?? 'https://cappgames.com').href;
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content={String(ogImageWidth)} />
+    <meta property="og:image:height" content={String(ogImageHeight)} />
     <meta property="og:site_name" content="CAPP GAMES" />
 
     <!-- Twitter / X -->
@@ -85,6 +106,6 @@ const ogImageURL = new URL(ogImage, Astro.site ?? 'https://cappgames.com').href;
       <slot />
     </main>
     <Footer />
-    <Analytics />
+    <CookieConsent />
   </body>
 </html>

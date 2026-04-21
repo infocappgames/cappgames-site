@@ -1,9 +1,28 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { useTranslations, type Lang } from '../i18n/ui';
+
+const lang = (Astro.currentLocale ?? 'en') as Lang;
+const t = useTranslations(lang);
+
 const links = [
-  { label: 'Video Games', href: '/video-games' },
-  { label: 'Board Games', href: '/board-games' },
-  { label: 'About', href: '/about' },
+  { label: t('nav.videoGames'), href: getRelativeLocaleUrl(lang, '/video-games') },
+  { label: t('nav.boardGames'), href: getRelativeLocaleUrl(lang, '/board-games') },
+  { label: t('nav.about'), href: getRelativeLocaleUrl(lang, '/about') },
 ];
+
+const pathname = Astro.url.pathname;
+const rawPath = lang === 'en' ? pathname : pathname.replace(new RegExp(`^/${lang}`), '') || '/';
+const basePath = rawPath.replace(/\/$/, '') || '/';
+
+const translatedBasePaths = new Set(['/', '/about', '/terms', '/board-games', '/board-games/ransack', '/board-games/new-game', '/video-games', '/video-games/fantasy-arena']);
+const hasTranslation = translatedBasePaths.has(basePath);
+
+const langLinks = {
+  en: { href: hasTranslation ? getRelativeLocaleUrl('en', basePath) : null, active: lang === 'en' },
+  es: { href: hasTranslation ? getRelativeLocaleUrl('es', basePath) : null, active: lang === 'es' },
+  fr: { href: hasTranslation ? getRelativeLocaleUrl('fr', basePath) : null, active: lang === 'fr' },
+};
 ---
 
 <nav class="nav">
@@ -20,6 +39,24 @@ const links = [
       ))}
     </ul>
 
+    <!-- Language switcher -->
+    <div class="lang-switcher">
+      {langLinks.en.href
+        ? <a href={langLinks.en.href} class={`lang-btn ${langLinks.en.active ? 'lang-active' : 'lang-inactive'}`}>EN</a>
+        : <span class={`lang-btn lang-active`}>EN</span>
+      }
+      <span class="lang-divider">|</span>
+      {langLinks.es.href
+        ? <a href={langLinks.es.href} class={`lang-btn ${langLinks.es.active ? 'lang-active' : 'lang-inactive'}`}>ES</a>
+        : <span class="lang-btn lang-inactive">ES</span>
+      }
+      <span class="lang-divider">|</span>
+      {langLinks.fr.href
+        ? <a href={langLinks.fr.href} class={`lang-btn ${langLinks.fr.active ? 'lang-active' : 'lang-inactive'}`}>FR</a>
+        : <span class="lang-btn lang-inactive">FR</span>
+      }
+    </div>
+
     <!-- Mobile hamburger (CSS-only toggle via checkbox) -->
     <input type="checkbox" id="nav-toggle" class="nav-toggle-input" aria-hidden="true" />
     <label for="nav-toggle" class="nav-hamburger" aria-label="Toggle menu">
@@ -33,6 +70,25 @@ const links = [
       {links.map(link => (
         <li><a href={link.href} class="nav-link">{link.label}</a></li>
       ))}
+      <li class="nav-mobile-divider"></li>
+      <li>
+        <div class="lang-switcher">
+          {langLinks.en.href
+            ? <a href={langLinks.en.href} class={`lang-btn ${langLinks.en.active ? 'lang-active' : 'lang-inactive'}`}>EN</a>
+            : <span class="lang-btn lang-active">EN</span>
+          }
+          <span class="lang-divider">|</span>
+          {langLinks.es.href
+            ? <a href={langLinks.es.href} class={`lang-btn ${langLinks.es.active ? 'lang-active' : 'lang-inactive'}`}>ES</a>
+            : <span class="lang-btn lang-inactive">ES</span>
+          }
+          <span class="lang-divider">|</span>
+          {langLinks.fr.href
+            ? <a href={langLinks.fr.href} class={`lang-btn ${langLinks.fr.active ? 'lang-active' : 'lang-inactive'}`}>FR</a>
+            : <span class="lang-btn lang-inactive">FR</span>
+          }
+        </div>
+      </li>
     </ul>
   </div>
 </nav>
@@ -95,6 +151,14 @@ const links = [
   .nav-link:hover { color: var(--gold); }
   .nav-link-admin { color: var(--gold); }
   .nav-link-admin:hover { opacity: 0.75; }
+
+  /* Language switcher */
+  .lang-switcher { display: flex; align-items: center; gap: 0.3rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; }
+  .lang-btn { cursor: pointer; transition: color 0.2s; padding: 0.1rem 0.2rem; text-decoration: none; }
+  .lang-active { color: var(--gold); }
+  .lang-inactive { color: var(--text-dim); }
+  .lang-inactive:hover { color: var(--text); }
+  .lang-divider { color: var(--border); user-select: none; }
 
   /* Hamburger / mobile */
   .nav-toggle-input { display: none; }
@@ -232,4 +296,3 @@ const links = [
     }
   }
 </style>
-

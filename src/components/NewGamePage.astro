@@ -1,0 +1,138 @@
+---
+import { useTranslations, type Lang } from '../i18n/ui';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const boardGamesHref = getRelativeLocaleUrl(lang, '/board-games');
+---
+
+<section class="teaser">
+  <div class="teaser-content container">
+    <a href={boardGamesHref} class="back-link">{t('newgame.back')}</a>
+    <div class="mystery-icon">?</div>
+    <div class="coming-tag">{t('newgame.tag')}</div>
+    <h1 class="teaser-title">{t('newgame.h1')}</h1>
+    <div class="ocean-divider"></div>
+    <p class="teaser-desc">{t('newgame.p1')}</p>
+    <p class="teaser-desc">{t('newgame.p2')}</p>
+    <a href={boardGamesHref} class="btn btn-ocean">{t('newgame.btn')}</a>
+  </div>
+  <div class="bubble b1"></div>
+  <div class="bubble b2"></div>
+  <div class="bubble b3"></div>
+  <div class="bubble b4"></div>
+  <div class="bubble b5"></div>
+</section>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+  h1, h2, h3, h4 { font-family: 'Nunito', sans-serif; }
+
+  .teaser {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #020d1a 0%, #031624 30%, #042035 60%, #031624 100%);
+    padding: 4rem 1.5rem;
+  }
+
+  .teaser-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .back-link { align-self: flex-start; margin-bottom: 2rem; color: #5baff5; opacity: 0.7; }
+  .back-link:hover { opacity: 1; color: #5baff5; }
+
+  .mystery-icon {
+    width: clamp(100px, 16vw, 160px);
+    height: clamp(100px, 16vw, 160px);
+    margin-bottom: 1.5rem;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(100,180,255,0.15), rgba(0,30,60,0.6));
+    border: 1px solid rgba(100,180,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(3rem, 8vw, 5rem);
+    color: rgba(100,180,255,0.4);
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    box-shadow: 0 0 40px rgba(100,180,255,0.15);
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .coming-tag {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    background: rgba(100,180,255,0.1);
+    color: #5baff5;
+    border: 1px solid rgba(100,180,255,0.3);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  .teaser-title { font-size: clamp(2.5rem, 8vw, 4rem); color: #a0d8f1; text-shadow: 0 0 40px rgba(100,180,255,0.4); margin-bottom: 0; }
+
+  .ocean-divider { width: 60px; height: 2px; background: linear-gradient(90deg, transparent, #5baff5, transparent); margin: 1.5rem auto; }
+
+  .teaser-desc { color: #7ab8d8; line-height: 1.75; font-size: 1rem; margin-bottom: 0.75rem; }
+
+  .btn-ocean {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.75rem;
+    background: transparent;
+    color: #5baff5;
+    border: 1px solid rgba(100,180,255,0.4);
+    border-radius: var(--radius);
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .btn-ocean:hover { background: rgba(100,180,255,0.1); border-color: #5baff5; opacity: 1; }
+
+  .bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(100,180,255,0.15), transparent);
+    border: 1px solid rgba(100,180,255,0.08);
+    animation: rise linear infinite;
+    pointer-events: none;
+  }
+  .b1 { width: 60px; height: 60px; left: 10%; bottom: -80px; animation-duration: 12s; }
+  .b2 { width: 30px; height: 30px; left: 25%; bottom: -40px; animation-duration: 9s; animation-delay: 2s; }
+  .b3 { width: 80px; height: 80px; left: 70%; bottom: -100px; animation-duration: 14s; animation-delay: 1s; }
+  .b4 { width: 20px; height: 20px; left: 80%; bottom: -30px; animation-duration: 8s; animation-delay: 3s; }
+  .b5 { width: 45px; height: 45px; left: 50%; bottom: -60px; animation-duration: 11s; animation-delay: 5s; }
+
+  @keyframes rise {
+    0%   { transform: translateY(0) translateX(0); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 0.3; }
+    100% { transform: translateY(-110vh) translateX(20px); opacity: 0; }
+  }
+</style>

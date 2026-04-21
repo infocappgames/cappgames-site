@@ -1,0 +1,11 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import RansackPage from '../../../components/RansackPage.astro';
+import { useTranslations } from '../../../i18n/ui';
+
+const t = useTranslations('es');
+---
+
+<Layout title={t('ransack.title')} description={t('ransack.description')} ogImage="/images/ransack-cover.webp" lang="es">
+  <RansackPage lang="es" />
+</Layout>

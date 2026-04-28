@@ -16,6 +16,16 @@ export default defineConfig({
   integrations: [
     auth(),
     sitemap({
+      filter: (page) => {
+        const isRootOrLocaleRoot = /^https:\/\/capp-games\.com\/(es\/|fr\/)?$/.test(page);
+        return (
+          !page.includes('/admin') &&
+          !page.includes('/auth') &&
+          !page.includes('/api') &&
+          !page.includes('/profile') &&
+          (!page.endsWith('/') || isRootOrLocaleRoot)
+        );
+      },
       customPages: [
         'https://capp-games.com/',
         'https://capp-games.com/about',

@@ -34,6 +34,7 @@ const orgJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'CAPP GAMES',
+  alternateName: ['CAPP-GAMES', 'capp-games', 'cappgames', 'CAPPGAMES', 'capp.games', 'CAPP.GAMES'],
   url: 'https://capp-games.com',
   logo: 'https://capp-games.com/images/capp-logo.png',
   description: 'Indie game studio creating free browser games and published board games.',
@@ -61,6 +62,7 @@ const ogImageURL = ogImage.startsWith('http')
     <!-- SEO -->
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content="CAPP GAMES, CAPP-GAMES, capp-games, cappgames, CAPPGAMES, capp.games, CAPP.GAMES, indie games, board games, browser games" />
     <link rel="canonical" href={canonicalURL.href} />
 
     <!-- hreflang: multi-language SEO -->

@@ -10,7 +10,7 @@ interface Props {
   ogImage?: string;
   ogImageWidth?: number;
   ogImageHeight?: number;
-  jsonLd?: object;
+  jsonLd?: object | object[];
   lang?: string;
 }
 
@@ -98,7 +98,10 @@ const ogImageURL = ogImage.startsWith('http')
 
     <!-- Structured data -->
     <script type="application/ld+json" set:html={JSON.stringify(orgJsonLd)} />
-    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+    {jsonLd && (Array.isArray(jsonLd)
+      ? jsonLd.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)
+      : <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    )}
 
     <!-- Font preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

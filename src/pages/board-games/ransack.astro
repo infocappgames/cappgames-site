@@ -5,21 +5,44 @@ import { useTranslations } from '../../i18n/ui';
 
 const t = useTranslations('en');
 
-const jsonLd = {
+const ransackLd = {
   '@context': 'https://schema.org',
   '@type': 'BoardGame',
   name: 'Ransack',
+  alternateName: ['Ransack board game', 'Ransack card game', 'Ransack fantasy card game'],
   description: t('ransack.description'),
   url: 'https://capp-games.com/board-games/ransack',
   image: 'https://capp-games.com/images/ransack-cover.webp',
+  sameAs: [
+    'https://boardgamegeek.com/boardgame/406870/ransack',
+    'https://www.instagram.com/ransack_game/',
+  ],
   genre: 'Fantasy',
   numberOfPlayers: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 6 },
+  author: {
+    '@type': 'Person',
+    name: 'Andres Annatar',
+    alternateName: 'ANDRES ANNATAR',
+    sameAs: 'https://www.instagram.com/andres.annatar/',
+  },
   publisher: {
     '@type': 'Organization',
     name: 'CAPP GAMES',
     url: 'https://capp-games.com',
   },
 };
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://capp-games.com' },
+    { '@type': 'ListItem', position: 2, name: 'Board Games', item: 'https://capp-games.com/board-games' },
+    { '@type': 'ListItem', position: 3, name: 'Ransack', item: 'https://capp-games.com/board-games/ransack' },
+  ],
+};
+
+const jsonLd = [ransackLd, breadcrumbLd];
 ---
 
 <Layout title={t('ransack.title')} description={t('ransack.description')} ogImage="/images/ransack-cover.webp" lang="en" jsonLd={jsonLd}>

@@ -5,10 +5,11 @@ import { useTranslations } from '../../i18n/ui';
 
 const t = useTranslations('en');
 
-const jsonLd = {
+const fantasyArenaLd = {
   '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
+  '@type': ['SoftwareApplication', 'VideoGame'],
   name: 'Auto-Chess: Fantasy Arena',
+  alternateName: ['Fantasy Arena', 'Auto Chess Fantasy Arena', 'Fantasy Arena auto chess game'],
   description: t('fa.description'),
   url: 'https://capp-games.com/video-games/fantasy-arena',
   image: 'https://capp-games.com/images/fantasy-arena-banner2.webp',
@@ -20,12 +21,30 @@ const jsonLd = {
     price: '0',
     priceCurrency: 'USD',
   },
+  author: {
+    '@type': 'Person',
+    name: 'Andres Annatar',
+    alternateName: 'ANDRES ANNATAR',
+    sameAs: 'https://www.instagram.com/andres.annatar/',
+  },
   publisher: {
     '@type': 'Organization',
     name: 'CAPP GAMES',
     url: 'https://capp-games.com',
   },
 };
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://capp-games.com' },
+    { '@type': 'ListItem', position: 2, name: 'Video Games', item: 'https://capp-games.com/video-games' },
+    { '@type': 'ListItem', position: 3, name: 'Auto-Chess: Fantasy Arena', item: 'https://capp-games.com/video-games/fantasy-arena' },
+  ],
+};
+
+const jsonLd = [fantasyArenaLd, breadcrumbLd];
 ---
 
 <Layout title={t('fa.title')} description={t('fa.description')} ogImage="/images/fantasy-arena-banner2.webp" lang="en" jsonLd={jsonLd}>

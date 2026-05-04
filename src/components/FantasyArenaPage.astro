@@ -47,6 +47,17 @@ const videoGamesHref = getRelativeLocaleUrl(lang, '/video-games');
   </div>
 </div>
 
+<!-- ─── Update Announcement ─────────────────────────────── -->
+<section class="update-banner-wrap">
+  <div class="container">
+    <div class="update-banner" role="region" aria-label="Update announcement">
+      <span class="update-badge">{t('fa.update.badge')}</span>
+      <h2 class="update-heading">{t('fa.update.heading')}</h2>
+      <p class="update-body">{t('fa.update.body')}</p>
+    </div>
+  </div>
+</section>
+
 <!-- ─── Content ──────────────────────────────────────────── -->
 <section class="features">
   <div class="container">
@@ -151,6 +162,11 @@ const videoGamesHref = getRelativeLocaleUrl(lang, '/video-games');
   .stat-icon { font-size: 1.1rem; }
   .stat-label { font-size: 0.9rem; font-weight: 500; }
   .stat-divider { width: 1px; height: 20px; background: var(--border); }
+  .update-banner-wrap { padding: 2.5rem 0 0.5rem; }
+  .update-banner { background: linear-gradient(135deg, rgba(245,192,0,0.08), rgba(91,175,245,0.06)); border: 1px solid rgba(245,192,0,0.35); border-radius: var(--radius); padding: 1.5rem 1.75rem; max-width: 720px; margin: 0 auto; text-align: center; }
+  .update-badge { display: inline-block; padding: 0.25rem 0.8rem; background: rgba(245,192,0,0.15); color: var(--gold); border: 1px solid rgba(245,192,0,0.4); border-radius: 999px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.85rem; }
+  .update-heading { font-size: 1.25rem; color: var(--gold); margin: 0 0 0.5rem; line-height: 1.3; }
+  .update-body { font-size: 0.95rem; color: var(--text-dim); line-height: 1.65; margin: 0; }
   .features { padding: 2rem 0 5rem; }
   .game-intro { font-size: 1rem; color: var(--text-dim); line-height: 1.8; margin: 0 0 1rem; }
   .steps-row { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }

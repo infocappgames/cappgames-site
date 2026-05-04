@@ -18,6 +18,10 @@ const t = useTranslations(lang);
     <div class="card product-card product-card-featured">
       <a href="/video-games/fantasy-arena" class="card-overlay-link" aria-label={t('home.fa.ariaLabel')}></a>
       <div class="featured-img-wrap fa-hex-card">
+        <div class="fa-ribbon" aria-label={t('home.fa.ribbon')}>
+          <span class="fa-ribbon-pulse" aria-hidden="true"></span>
+          <span class="fa-ribbon-text">{t('home.fa.ribbon')}</span>
+        </div>
         <svg class="fa-hex-svg" viewBox="0 0 600 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <radialGradient id="fa-bg" cx="50%" cy="50%" r="70%">
@@ -172,7 +176,7 @@ const t = useTranslations(lang);
   }
 
   .hero-tagline {
-    font-family: 'Cinzel', serif;
+    font-family: 'Marcellus SC', serif;
     font-size: clamp(1rem, 2.5vw, 1.4rem);
     color: var(--text-dim);
     margin-bottom: 0;
@@ -282,6 +286,45 @@ const t = useTranslations(lang);
     overflow: hidden;
   }
 
+  .fa-ribbon {
+    position: absolute;
+    top: 28px;
+    right: -55px;
+    transform: rotate(35deg);
+    transform-origin: center;
+    background: linear-gradient(90deg, #f5c000, #f08040);
+    color: #1a0d00;
+    font-family: 'Marcellus SC', serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.35rem 3.5rem;
+    z-index: 2;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.45);
+    pointer-events: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+  }
+  .fa-ribbon-pulse {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #c00000;
+    box-shadow: 0 0 0 0 rgba(200,0,0,0.7);
+    animation: fa-ribbon-pulse 1.8s ease-out infinite;
+  }
+  @keyframes fa-ribbon-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(200,0,0,0.7); }
+    70%  { box-shadow: 0 0 0 10px rgba(200,0,0,0); }
+    100% { box-shadow: 0 0 0 0 rgba(200,0,0,0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fa-ribbon-pulse { animation: none; }
+  }
+
   .fa-hex-svg {
     position: absolute;
     inset: 0;
@@ -308,7 +351,7 @@ const t = useTranslations(lang);
   }
 
   .fa-label {
-    font-family: 'Cinzel', serif;
+    font-family: 'Marcellus SC', serif;
     font-size: 2.3rem;
     letter-spacing: 0.12em;
     background: linear-gradient(90deg, #f0c040, #f08040);
@@ -375,7 +418,7 @@ const t = useTranslations(lang);
 
   .support-heading {
     color: var(--gold);
-    font-family: 'Cinzel', serif;
+    font-family: 'Marcellus SC', serif;
     font-size: 1.2rem;
     font-weight: 700;
     letter-spacing: 0.04em;

@@ -13,6 +13,7 @@ export const ui = {
     'home.ourGames': 'Our Games',
     'home.fa.tagBrowser': 'Browser Game',
     'home.fa.tagUpdate': 'Major Update Coming',
+    'home.fa.ribbon': 'Mid-May Update',
     'home.fa.ariaLabel': 'View Auto-Chess: Fantasy Arena',
     'home.fa.desc1': 'Free auto-chess strategy game. Summon heroes, build your board, conquer The Abyss.',
     'home.fa.desc2': 'A major update is in the works — stay tuned for more info soon.',
@@ -221,6 +222,9 @@ export const ui = {
     'fa.tip.4': 'Survive deeper rounds to claim your place in the Hall of Champions',
     'fa.tip.5': 'Win Round 20 to discover what waits beyond…',
     'fa.playNote': 'No account required. Runs in any modern browser.',
+    'fa.update.badge': 'Coming Soon',
+    'fa.update.heading': 'Major update arriving mid-May',
+    'fa.update.body': 'A revised version of Fantasy Arena is on the way — tons of new content, balance changes, and improvements. Stay tuned.',
   },
   es: {
     'nav.videoGames': 'Videojuegos',
@@ -231,6 +235,7 @@ export const ui = {
     'home.ourGames': 'Nuestros Juegos',
     'home.fa.tagBrowser': 'Juego de Navegador',
     'home.fa.tagUpdate': 'Gran Actualización en Camino',
+    'home.fa.ribbon': 'Actualización Mid-Mayo',
     'home.fa.ariaLabel': 'Ver Auto-Chess: Fantasy Arena',
     'home.fa.desc1': 'Juego de estrategia auto-chess gratuito. Invoca héroes, construye tu tablero, conquista El Abismo.',
     'home.fa.desc2': 'Una gran actualización está en camino — estate atento, pronto habrá más novedades.',
@@ -432,6 +437,9 @@ export const ui = {
     'fa.tip.4': 'Sobrevive rondas más profundas para reclamar tu lugar en el Salón de Campeones',
     'fa.tip.5': 'Gana la Ronda 20 para descubrir lo que aguarda más allá...',
     'fa.playNote': 'Sin cuenta requerida. Funciona en cualquier navegador moderno.',
+    'fa.update.badge': 'Próximamente',
+    'fa.update.heading': 'Gran actualización a mediados de mayo',
+    'fa.update.body': 'Una versión revisada de Fantasy Arena está en camino — montones de contenido nuevo, ajustes de balance y mejoras. Mantente atento.',
   },
   fr: {
     'nav.videoGames': 'Jeux Vidéo',
@@ -442,6 +450,7 @@ export const ui = {
     'home.ourGames': 'Nos Jeux',
     'home.fa.tagBrowser': 'Jeu Navigateur',
     'home.fa.tagUpdate': 'Grande Mise à Jour à Venir',
+    'home.fa.ribbon': 'Maj Mi-Mai',
     'home.fa.ariaLabel': 'Voir Auto-Chess: Fantasy Arena',
     'home.fa.desc1': "Jeu de stratégie auto-chess gratuit. Invoquez des héros, construisez votre plateau, conquérez L'Abîme.",
     'home.fa.desc2': "Une grande mise à jour est en cours — restez connectés pour plus d'infos bientôt.",
@@ -643,6 +652,9 @@ export const ui = {
     'fa.tip.4': 'Survivez aux rondes plus profondes pour revendiquer votre place dans le Hall des Champions',
     'fa.tip.5': 'Gagnez la Ronde 20 pour découvrir ce qui attend au-delà...',
     'fa.playNote': "Aucun compte requis. Fonctionne dans n'importe quel navigateur moderne.",
+    'fa.update.badge': 'Bientôt disponible',
+    'fa.update.heading': 'Mise à jour majeure à la mi-mai',
+    'fa.update.body': "Une version révisée de Fantasy Arena arrive — beaucoup de nouveau contenu, des ajustements d'équilibrage et des améliorations. Restez à l'écoute.",
   },
 } as const;
 

@@ -2,6 +2,7 @@
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import CookieConsent from '../components/CookieConsent.astro';
+import { getAbsoluteLocaleUrl } from 'astro:i18n';
 import '../styles/global.css';
 
 interface Props {
@@ -16,9 +17,9 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://capp-games.com');
 
-const siteBase = (Astro.site?.href ?? 'https://capp-games.com').replace(/\/$/, '');
-const localeStripped = Astro.url.pathname.replace(/^\/(es|fr)/, '');
-const basePath = (localeStripped === '' ? '/' : localeStripped).replace(/(?<=.)\/$/,  '') || '/';
+const localeStripped = Astro.url.pathname.replace(/^\/(es|fr)(?=\/|$)/, '');
+const normalized = localeStripped === '' ? '/' : localeStripped.replace(/\/$/, '');
+const basePath = normalized || '/';
 
 const {
   title,
@@ -47,6 +48,17 @@ const orgJsonLd = {
   ],
 };
 
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'CAPP GAMES',
+  alternateName: ['CAPP Games', 'CAPPGAMES'],
+  url: 'https://capp-games.com',
+  description: 'Indie game studio creating free browser games and published board games.',
+  inLanguage: ['en', 'es', 'fr'],
+  publisher: { '@type': 'Organization', name: 'CAPP GAMES', url: 'https://capp-games.com' },
+};
+
 const fullTitle = `${title} | CAPP GAMES`;
 const ogImageURL = ogImage.startsWith('http')
   ? ogImage
@@ -65,10 +77,10 @@ const ogImageURL = ogImage.startsWith('http')
     <link rel="canonical" href={canonicalURL.href} />
 
     <!-- hreflang: multi-language SEO -->
-    <link rel="alternate" hreflang="en"       href={`${siteBase}${basePath}`} />
-    <link rel="alternate" hreflang="es"       href={`${siteBase}/es${basePath === '/' ? '' : basePath}`} />
-    <link rel="alternate" hreflang="fr"       href={`${siteBase}/fr${basePath === '/' ? '' : basePath}`} />
-    <link rel="alternate" hreflang="x-default" href={`${siteBase}${basePath}`} />
+    <link rel="alternate" hreflang="en"        href={getAbsoluteLocaleUrl('en', basePath)} />
+    <link rel="alternate" hreflang="es"        href={getAbsoluteLocaleUrl('es', basePath)} />
+    <link rel="alternate" hreflang="fr"        href={getAbsoluteLocaleUrl('fr', basePath)} />
+    <link rel="alternate" hreflang="x-default" href={getAbsoluteLocaleUrl('en', basePath)} />
 
     <!-- Favicon & touch icons -->
     <link rel="icon" type="image/png" href="/images/cappgames-logo-180.png" />
@@ -97,6 +109,7 @@ const ogImageURL = ogImage.startsWith('http')
 
     <!-- Structured data -->
     <script type="application/ld+json" set:html={JSON.stringify(orgJsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)} />
     {jsonLd && (Array.isArray(jsonLd)
       ? jsonLd.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)
       : <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

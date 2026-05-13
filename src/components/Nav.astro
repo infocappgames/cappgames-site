@@ -6,7 +6,7 @@ const lang = (Astro.currentLocale ?? 'en') as Lang;
 const t = useTranslations(lang);
 
 const links = [
-  { label: t('nav.videoGames'), href: getRelativeLocaleUrl(lang, '/video-games') },
+  { label: t('nav.videoGames'), href: getRelativeLocaleUrl(lang, '/video-games/fantasy-arena') },
   { label: t('nav.boardGames'), href: getRelativeLocaleUrl(lang, '/board-games') },
   { label: t('nav.about'), href: getRelativeLocaleUrl(lang, '/about') },
 ];

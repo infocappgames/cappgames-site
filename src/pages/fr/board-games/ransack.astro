@@ -4,8 +4,70 @@ import RansackPage from '../../../components/RansackPage.astro';
 import { useTranslations } from '../../../i18n/ui';
 
 const t = useTranslations('fr');
+const MERCADOLIBRE_URL = 'https://articulo.mercadolibre.com.co/MCO-1935899529-ransack-juego-de-mesa-de-cartas-en-espanol-_JM';
+
+const ransackLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BoardGame',
+  name: 'Ransack',
+  alternateName: ['Ransack jeu de société', 'Ransack jeu de cartes', 'Ransack jeu de cartes fantastique'],
+  description: t('ransack.description'),
+  url: 'https://capp-games.com/fr/board-games/ransack',
+  image: 'https://capp-games.com/images/ransack-cover.webp',
+  inLanguage: 'fr',
+  sameAs: [
+    'https://boardgamegeek.com/boardgame/406870/ransack',
+    'https://www.instagram.com/ransack_game/',
+  ],
+  genre: 'Fantasy',
+  numberOfPlayers: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 6 },
+  author: {
+    '@type': 'Person',
+    name: 'Andres Annatar',
+    alternateName: 'ANDRES ANNATAR',
+    sameAs: 'https://www.instagram.com/andres.annatar/',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'CAPP GAMES',
+    url: 'https://capp-games.com',
+  },
+  offers: {
+    '@type': 'Offer',
+    url: MERCADOLIBRE_URL,
+    price: '85000',
+    priceCurrency: 'COP',
+    availability: 'https://schema.org/InStock',
+    seller: { '@type': 'Organization', name: 'MercadoLibre Colombia' },
+  },
+};
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://capp-games.com/fr' },
+    { '@type': 'ListItem', position: 2, name: 'Jeux de Société', item: 'https://capp-games.com/fr/board-games' },
+    { '@type': 'ListItem', position: 3, name: 'Ransack', item: 'https://capp-games.com/fr/board-games/ransack' },
+  ],
+};
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [1, 2, 3, 4, 5, 6, 7, 8].map(n => ({
+    '@type': 'Question',
+    name: t(`ransack.faq.${n}.q` as any),
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: t(`ransack.faq.${n}.a` as any),
+    },
+  })),
+};
+
+const jsonLd = [ransackLd, breadcrumbLd, faqLd];
 ---
 
-<Layout title={t('ransack.title')} description={t('ransack.description')} ogImage="/images/ransack-cover.webp" lang="fr">
+<Layout title={t('ransack.title')} description={t('ransack.description')} ogImage="/images/ransack-cover.webp" lang="fr" jsonLd={jsonLd}>
   <RansackPage lang="fr" />
 </Layout>

@@ -154,7 +154,7 @@ a:hover { opacity: 0.8; }
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  color: var(--text-dim);
+  color: #ffffff;
   font-size: 0.9rem;
   margin-bottom: 2rem;
   transition: color 0.2s;

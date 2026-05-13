@@ -4,8 +4,54 @@ import BoardGamesIndexPage from '../../../components/BoardGamesIndexPage.astro';
 import { useTranslations } from '../../../i18n/ui';
 
 const t = useTranslations('es');
+
+const collectionLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: `${t('boardgames.h1')} — CAPP GAMES`,
+  description: t('boardgames.description'),
+  url: 'https://capp-games.com/es/board-games',
+  inLanguage: 'es',
+  isPartOf: { '@type': 'WebSite', name: 'CAPP GAMES', url: 'https://capp-games.com' },
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        item: {
+          '@type': 'BoardGame',
+          name: 'Ransack',
+          url: 'https://capp-games.com/es/board-games/ransack',
+          image: 'https://capp-games.com/images/ransack-cover.webp',
+        },
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        item: {
+          '@type': 'BoardGame',
+          name: t('boardgames.newgame.title'),
+          url: 'https://capp-games.com/es/board-games/new-game',
+          image: 'https://capp-games.com/images/UpcomingWaterGame.webp',
+        },
+      },
+    ],
+  },
+};
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://capp-games.com/es' },
+    { '@type': 'ListItem', position: 2, name: 'Juegos de Mesa', item: 'https://capp-games.com/es/board-games' },
+  ],
+};
+
+const jsonLd = [collectionLd, breadcrumbLd];
 ---
 
-<Layout title={t('boardgames.title')} description={t('boardgames.description')} lang="es">
+<Layout title={t('boardgames.title')} description={t('boardgames.description')} lang="es" jsonLd={jsonLd}>
   <BoardGamesIndexPage lang="es" />
 </Layout>

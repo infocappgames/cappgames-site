@@ -43,14 +43,48 @@ const formMsgs = {
       <h2>{t('about.studio.heading')}</h2>
       <p>{t('about.studio.p1')}</p>
       <p>{t('about.studio.p2')}</p>
+      <img src="/images/capp-logo.png" alt="CAPP GAMES logo" class="studio-logo" loading="lazy" />
     </div>
 
     <div class="about-text">
+      <img src="/images/creator.webp" alt="Carlos Andrés (ANDRES ANNATAR), founder of CAPP GAMES" class="creator-img" loading="lazy" />
       <h2>{t('about.creator.heading')}</h2>
       <p set:html={t('about.creator.p1Html')} />
       <p>{t('about.creator.p2')}</p>
     </div>
 
+  </div>
+</section>
+
+<!-- ─── Services ──────────────────────────────────────────── -->
+<section class="services-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>{t('about.services.heading')}</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon" aria-hidden="true">&#127922;</div>
+        <h3>{t('about.services.s1.h')}</h3>
+        <p>{t('about.services.s1.p')}</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" aria-hidden="true">&#128161;</div>
+        <h3>{t('about.services.s2.h')}</h3>
+        <p>{t('about.services.s2.p')}</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" aria-hidden="true">&#129514;</div>
+        <h3>{t('about.services.s3.h')}</h3>
+        <p>{t('about.services.s3.p')}</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" aria-hidden="true">&#129309;</div>
+        <h3>{t('about.services.s4.h')}</h3>
+        <p>{t('about.services.s4.p')}</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -218,6 +252,14 @@ const formMsgs = {
     filter: drop-shadow(0 0 20px rgba(245,192,0,0.3));
   }
 
+  .studio-logo {
+    display: block;
+    width: clamp(140px, 18vw, 200px);
+    height: auto;
+    margin: 2rem auto 0;
+    filter: drop-shadow(0 0 24px rgba(245,192,0,0.3));
+  }
+
   .about-text h2 {
     font-size: 1.2rem;
     color: var(--gold);
@@ -238,6 +280,45 @@ const formMsgs = {
     transition: border-color 0.2s;
   }
   .inline-link:hover { border-color: var(--gold); }
+
+  /* ─── Services ────────────────────────────────────────────── */
+  .services-section {
+    padding: 1rem 0 3rem;
+    border-top: 1px solid var(--border);
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .service-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .service-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+  .service-icon { font-size: 1.8rem; margin-bottom: 0.6rem; }
+  .service-card h3 {
+    font-size: 1.05rem;
+    color: var(--gold);
+    margin: 0 0 0.5rem;
+  }
+  .service-card p {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    line-height: 1.65;
+    margin: 0;
+  }
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
 
   /* ─── Support ─────────────────────────────────────────────── */
   .support-section {
@@ -514,6 +595,8 @@ const formMsgs = {
     .about-grid  { grid-template-columns: 1fr; gap: 2rem; }
     .field-row   { grid-template-columns: 1fr; }
     .form-footer { flex-direction: column; align-items: flex-start; }
+    .about-text  { display: flex; flex-direction: column; }
+    .creator-img { order: 99; margin: 1.5rem auto 0; }
   }
 </style>
 

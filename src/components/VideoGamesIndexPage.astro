@@ -42,10 +42,7 @@ const faHref = getRelativeLocaleUrl(lang, '/video-games/fantasy-arena');
           <rect width="600" height="200" fill="url(#fa-glow)"/>
         </svg>
         <div class="fa-overlay-content">
-          <div class="fa-heroes">
-            <span>&#9876;&#65039;</span><span>&#129497;</span><span>&#127993;</span><span>&#128154;</span><span>&#128481;&#65039;</span>
-          </div>
-          <span class="fa-label">Auto-Chess: Fantasy Arena</span>
+          <img src="/images/fantasy-arena-logo.png" alt="Auto-Chess: Fantasy Arena" class="fa-logo-img" />
         </div>
       </div>
       <div class="card-body">
@@ -67,7 +64,8 @@ const faHref = getRelativeLocaleUrl(lang, '/video-games/fantasy-arena');
 </section>
 
 <style>
-  .page { padding: 3rem 0 5rem; }
+  .page { padding: 1.25rem 0 5rem; }
+  .page .section-header { padding: 1.5rem 0 1.5rem; }
   .page-sub { color: var(--text-dim); font-size: 1.05rem; margin: 0; }
   .page-back { display: inline-flex; margin-bottom: 1rem; }
   .game-card { display: flex; flex-direction: column; color: var(--text); position: relative; }
@@ -75,8 +73,7 @@ const faHref = getRelativeLocaleUrl(lang, '/video-games/fantasy-arena');
   .fa-hex-card { position: relative; background: #050b18; overflow: hidden; width: 100%; aspect-ratio: 3/1; max-height: 220px; }
   .fa-hex-svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
   .fa-overlay-content { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; z-index: 1; }
-  .fa-heroes { display: flex; gap: 2.2rem; font-size: 2.86rem; }
-  .fa-label { font-family: 'Marcellus SC', serif; font-size: 2.3rem; letter-spacing: 0.12em; background: linear-gradient(90deg, #f0c040, #f08040); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .fa-logo-img { width: clamp(230px, 57.5%, 437px); height: auto; filter: drop-shadow(0 4px 24px rgba(0,0,0,0.7)); }
   .card-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.65rem; background: var(--card-bg); border: 1px solid var(--border); border-top: none; }
   .featured-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
   .card-body h2 { font-size: 1.4rem; color: var(--text); }
@@ -88,9 +85,6 @@ const faHref = getRelativeLocaleUrl(lang, '/video-games/fantasy-arena');
   .details-link:hover { color: var(--gold); }
   .tag-update { background: rgba(100,160,255,0.12); color: #80b8ff; border-color: rgba(100,160,255,0.3); }
   @media (max-width: 640px) {
-    .fa-label { font-size: 1.2rem; }
-    .fa-heroes { font-size: 1.8rem; gap: 1rem; }
-    .fa-overlay-content { gap: 0.1rem; }
     .fa-hex-card { max-height: 160px; }
   }
 </style>

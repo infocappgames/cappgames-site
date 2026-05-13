@@ -4,8 +4,43 @@ import VideoGamesIndexPage from '../../components/VideoGamesIndexPage.astro';
 import { useTranslations } from '../../i18n/ui';
 
 const t = useTranslations('en');
+
+const collectionLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: `${t('videogames.h1')} — CAPP GAMES`,
+  description: t('videogames.description'),
+  url: 'https://capp-games.com/video-games',
+  inLanguage: 'en',
+  isPartOf: { '@type': 'WebSite', name: 'CAPP GAMES', url: 'https://capp-games.com' },
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        item: {
+          '@type': 'VideoGame',
+          name: 'Auto-Chess: Fantasy Arena',
+          url: 'https://capp-games.com/video-games/fantasy-arena',
+        },
+      },
+    ],
+  },
+};
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://capp-games.com' },
+    { '@type': 'ListItem', position: 2, name: 'Video Games', item: 'https://capp-games.com/video-games' },
+  ],
+};
+
+const jsonLd = [collectionLd, breadcrumbLd];
 ---
 
-<Layout title={t('videogames.title')} description={t('videogames.description')} lang="en">
+<Layout title={t('videogames.title')} description={t('videogames.description')} lang="en" jsonLd={jsonLd}>
   <VideoGamesIndexPage lang="en" />
 </Layout>

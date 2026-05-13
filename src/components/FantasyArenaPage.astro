@@ -15,21 +15,22 @@ const videoGamesHref = getRelativeLocaleUrl(lang, '/video-games');
     <img src="/images/fantasy-arena-banner2.webp" alt="" class="hero-banner-img" fetchpriority="high" />
     <div class="hero-overlay"></div>
     <div class="hero-emojis" aria-hidden="true">
-      <span class="emoji-float" style="top: 8%; right: 32%; font-size: 10rem;">⚔️</span>
-      <span class="emoji-float" style="top: 10%; right: 6%; font-size: 11rem;">💚</span>
-      <span class="emoji-float" style="top: 26%; right: 14%; font-size: 12rem;">🧙</span>
-      <span class="emoji-float" style="bottom: 12%; right: 24%; font-size: 10rem;">🏹</span>
-      <span class="emoji-float" style="bottom: 10%; right: 12%; font-size: 10rem;">🗡️</span>
-      <span class="emoji-float" style="top: 5%; left: 3%; font-size: 10rem;">🕷️</span>
-      <span class="emoji-float" style="top: 8%; left: 20%; font-size: 12rem; transform: scaleX(-1);">🐉</span>
-      <span class="emoji-float" style="bottom: 10%; left: 18%; font-size: 10rem;">🔮</span>
+      <span class="emoji-float" style="top: 8%; right: 24%; font-size: 8rem;">⚔️</span>
+      <span class="emoji-float" style="top: 10%; right: 6%; font-size: 8.8rem;">💚</span>
+      <span class="emoji-float" style="top: 26%; right: 16%; font-size: 9.6rem;">🧙</span>
+      <span class="emoji-float" style="bottom: 12%; right: 28%; font-size: 8rem;">🏹</span>
+      <span class="emoji-float" style="bottom: 10%; right: 12%; font-size: 8rem;">🗡️</span>
+      <span class="emoji-float" style="top: 5%; left: 3%; font-size: 8rem;">🕷️</span>
+      <span class="emoji-float" style="top: calc(8% + 2.88rem); left: 20%; font-size: 9.6rem; transform: scaleX(-1);">🐉</span>
+      <span class="emoji-float" style="bottom: 10%; left: calc(18% - 8rem); font-size: 8rem;">🔮</span>
     </div>
   </div>
-  <div class="hero-content container">
+  <div class="hero-top container">
     <a href={videoGamesHref} class="back-link">{t('fa.back')}</a>
     <div class="hero-badge">{t('fa.badge')}</div>
-    <h1>Auto-Chess:<br /><span class="gold">Fantasy Arena</span></h1>
-    <p class="hero-desc" set:html={t('fa.heroDescHtml')} />
+  </div>
+  <div class="hero-content">
+    <img src="/images/fantasy-arena-logo.png" alt="Auto-Chess: Fantasy Arena" class="fa-hero-logo" />
     <a href="https://fantasy-arena-iota.vercel.app" target="_blank" rel="noopener" class="btn btn-gold play-btn">{t('fa.playNow')}</a>
   </div>
 </section>
@@ -145,16 +146,18 @@ const videoGamesHref = getRelativeLocaleUrl(lang, '/video-games');
   @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700;800&display=swap');
   h1, h2, h3, h4 { font-family: 'Exo 2', sans-serif; }
 
-  .hero { position: relative; padding: 5rem 0 4rem; overflow: hidden; }
+  .hero { position: relative; overflow: hidden; min-height: 420px; }
   .hero-bg { position: absolute; inset: 0; z-index: 0; }
   .hero-banner-img { width: 100%; height: 100%; object-fit: cover; object-position: center 65%; display: block; }
   .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(10,10,10,0.82) 40%, rgba(10,10,10,0.3) 100%), linear-gradient(to top, rgba(10,10,10,0.6) 0%, transparent 40%); }
   .hero-emojis { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
   .emoji-float { position: absolute; line-height: 1; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5)); }
-  .hero-content { position: relative; z-index: 2; max-width: 700px; }
-  .hero-badge { display: inline-block; padding: 0.3rem 0.9rem; background: rgba(91,175,245,0.12); color: #5baff5; border: 1px solid rgba(91,175,245,0.3); border-radius: 999px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.25rem; }
+  .hero-top { position: relative; z-index: 2; padding-top: 2rem; }
+  .hero-content { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem 1.5rem 3rem; pointer-events: none; }
+  .hero-content .btn { pointer-events: auto; }
+  .hero-badge { display: inline-block; padding: 0.3rem 0.9rem; background: rgba(91,175,245,0.12); color: #5baff5; border: 1px solid rgba(91,175,245,0.3); border-radius: 999px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
   .hero h1 { margin-bottom: 1.25rem; line-height: 1.15; }
-  .hero-desc { font-size: 1.05rem; color: var(--text-dim); line-height: 1.75; max-width: 580px; margin-bottom: 2rem; }
+  .fa-hero-logo { display: block; width: clamp(320px, 65%, 680px); height: auto; margin-bottom: 2rem; filter: drop-shadow(0 6px 32px rgba(0,0,0,0.85)); }
   .play-btn { font-size: 1.1rem; padding: 1rem 2.5rem; }
   .stats-bar { background: var(--card-bg); border-top: 1px solid rgba(91,175,245,0.4); border-bottom: 1px solid var(--border); padding: 1rem 0; }
   .stats-inner { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
@@ -167,7 +170,8 @@ const videoGamesHref = getRelativeLocaleUrl(lang, '/video-games');
   .update-badge { display: inline-block; padding: 0.25rem 0.8rem; background: rgba(245,192,0,0.15); color: var(--gold); border: 1px solid rgba(245,192,0,0.4); border-radius: 999px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.85rem; }
   .update-heading { font-size: 1.25rem; color: var(--gold); margin: 0 0 0.5rem; line-height: 1.3; }
   .update-body { font-size: 0.95rem; color: var(--text-dim); line-height: 1.65; margin: 0; }
-  .features { padding: 2rem 0 5rem; }
+  .features { padding: 0.25rem 0 5rem; }
+  .features .section-header:first-child { padding: 1.25rem 0 1.5rem; }
   .game-intro { font-size: 1rem; color: var(--text-dim); line-height: 1.8; margin: 0 0 1rem; }
   .steps-row { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
   .step-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1rem; text-align: center; width: 120px; transition: border-color 0.2s; }

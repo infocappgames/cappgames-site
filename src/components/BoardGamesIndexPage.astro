@@ -61,11 +61,36 @@ const newGameHref = getRelativeLocaleUrl(lang, '/board-games/new-game');
       </a>
 
     </div>
+
+    <div class="bg-about">
+      <div class="bg-intro-block">
+        <h2>{t('boardgames.about.heading')}</h2>
+        <div class="gold-divider"></div>
+        <p class="bg-intro">{t('boardgames.about.intro')}</p>
+      </div>
+
+      <div class="bg-block">
+        <h2>{t('boardgames.about.philosophy.h')}</h2>
+        <div class="gold-divider"></div>
+        <p>{t('boardgames.about.philosophy.p1')}</p>
+        <p>{t('boardgames.about.philosophy.p2')}</p>
+        <p>{t('boardgames.about.philosophy.p3')}</p>
+        <p>{t('boardgames.about.philosophy.p4')}</p>
+      </div>
+
+      <div class="bg-block">
+        <h2>{t('boardgames.about.buying.h')}</h2>
+        <div class="gold-divider"></div>
+        <p>{t('boardgames.about.buying.p1')}</p>
+        <p>{t('boardgames.about.buying.p2')}</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <style>
-  .page { padding: 3rem 0 5rem; }
+  .page { padding: 1.25rem 0 5rem; }
+  .page .section-header { padding: 1.5rem 0 1.5rem; }
   .page-sub { color: var(--text-dim); font-size: 1.05rem; margin: 0; }
   .page-back { display: inline-flex; margin-bottom: 1rem; }
   .game-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
@@ -83,4 +108,55 @@ const newGameHref = getRelativeLocaleUrl(lang, '/board-games/new-game');
   .card-cta { color: var(--gold); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.04em; margin-top: 0.5rem; }
   .card-cta-dim { color: var(--text-dim); }
   .game-card-soon { opacity: 0.8; }
+
+  /* ─── About section (below grid) ─────────────────────────── */
+  .bg-about {
+    max-width: 780px;
+    margin: 4rem auto 0;
+  }
+  .bg-intro-block {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .bg-intro-block h2 {
+    font-size: 1.4rem;
+    color: var(--gold);
+    margin: 0 0 0.5rem;
+  }
+  .bg-intro-block .gold-divider {
+    margin: 0 auto 1.25rem;
+  }
+  .bg-intro {
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin: 0;
+  }
+  .bg-block {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .bg-block:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .bg-block h2 {
+    font-size: 1.4rem;
+    color: var(--gold);
+    margin: 0 0 0.5rem;
+  }
+  .bg-block .gold-divider {
+    margin: 0 0 1.25rem;
+  }
+  .bg-block p {
+    color: var(--text-dim);
+    line-height: 1.8;
+    margin: 0 0 1rem;
+    font-size: 0.95rem;
+  }
+  .bg-block p:last-child { margin-bottom: 0; }
 </style>

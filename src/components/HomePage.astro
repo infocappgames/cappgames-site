@@ -1,19 +1,32 @@
 ---
 import { useTranslations, type Lang } from '../i18n/ui';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+const contactHref = getRelativeLocaleUrl(lang, '/about') + '#contact';
+const ransackHref = getRelativeLocaleUrl(lang, '/board-games/ransack');
+const faHref = getRelativeLocaleUrl(lang, '/video-games/fantasy-arena');
+const s1p1Html = t('home.wwm.s1.p1')
+  .replace('{ransackLink}', `<a href="${ransackHref}" class="wwm-inline-link">Ransack</a>`)
+  .replace('{faLink}', `<a href="${faHref}" class="wwm-inline-link">Auto-Chess: Fantasy Arena</a>`);
 ---
+
+<!-- ─── Hero ─────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="container hero-inner">
+    <img src="/images/capp-logo.png" alt="CAPP GAMES" class="hero-logo" fetchpriority="high" />
+    <div class="hero-text">
+      <h1 class="hero-title">CAPP GAMES</h1>
+      <p class="hero-tagline">{t('home.hero.tagline')}</p>
+    </div>
+  </div>
+</section>
 
 <!-- ─── Products ─────────────────────────────────────────── -->
 <section class="products">
   <div class="container">
-    <div class="section-header">
-      <h2>{t('home.ourGames')}</h2>
-      <div class="gold-divider"></div>
-    </div>
-
     <!-- Fantasy Arena — featured -->
     <div class="card product-card product-card-featured">
       <a href="/video-games/fantasy-arena" class="card-overlay-link" aria-label={t('home.fa.ariaLabel')}></a>
@@ -42,14 +55,7 @@ const t = useTranslations(lang);
           <rect width="600" height="200" fill="url(#fa-glow)"/>
         </svg>
         <div class="fa-overlay-content">
-          <div class="fa-heroes">
-            <span>&#9876;&#65039;</span>
-            <span>&#129497;</span>
-            <span>&#127993;</span>
-            <span>&#128154;</span>
-            <span>&#128481;&#65039;</span>
-          </div>
-          <span class="fa-label">Auto-Chess: Fantasy Arena</span>
+          <img src="/images/fantasy-arena-logo.png" alt="Auto-Chess: Fantasy Arena" class="fa-logo-img" />
         </div>
       </div>
       <div class="card-body">
@@ -116,12 +122,42 @@ const t = useTranslations(lang);
   </div>
 </section>
 
-<!-- ─── Hero ─────────────────────────────────────────────── -->
-<section class="hero">
-  <div class="hero-content">
-    <img src="/images/capp-logo.png" alt="CAPP GAMES" class="hero-logo" fetchpriority="high" />
-    <h1 class="hero-title">CAPP GAMES</h1>
-    <p class="hero-tagline">{t('home.hero.tagline')}</p>
+<!-- ─── What We Make ─────────────────────────────────────── -->
+<section class="wwm">
+  <div class="container">
+    <div class="section-header">
+      <h2>{t('home.wwm.heading')}</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <p class="wwm-intro">{t('home.wwm.intro')}</p>
+
+    <div class="wwm-block">
+      <h3>{t('home.wwm.s1.h')}</h3>
+      <p set:html={s1p1Html} />
+      <p>{t('home.wwm.s1.p2')}</p>
+    </div>
+
+    <div class="wwm-block">
+      <h3>{t('home.wwm.s2.h')}</h3>
+      <p>{t('home.wwm.s2.p1')}</p>
+      <p>{t('home.wwm.s2.p2')}</p>
+    </div>
+
+    <div class="wwm-block">
+      <h3>{t('home.wwm.s3.h')}</h3>
+      <p>{t('home.wwm.s3.p1')}</p>
+      <p>{t('home.wwm.s3.p2')}</p>
+    </div>
+
+    <div class="wwm-block">
+      <h3>{t('home.wwm.s4.h')}</h3>
+      <p>{t('home.wwm.s4.p1')}</p>
+      <p>{t('home.wwm.s4.p2')}</p>
+    </div>
+
+    <p class="wwm-cta">
+      {t('home.wwm.cta.before')}<a href={contactHref} class="wwm-cta-link">{t('home.wwm.cta.link')}</a>{t('home.wwm.cta.after')}
+    </p>
   </div>
 </section>
 
@@ -147,45 +183,50 @@ const t = useTranslations(lang);
 <style>
   /* ─── Hero ───────────────────────────────────────────────── */
   .hero {
+    background:
+      radial-gradient(ellipse 80% 120% at 50% 50%, rgba(245,192,0,0.05) 0%, transparent 70%),
+      var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 2.5rem 0;
+  }
+
+  .hero-inner {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    padding: 3rem 1.5rem 3.5rem;
-    background:
-      radial-gradient(ellipse 80% 50% at 50% 50%, rgba(245,192,0,0.05) 0%, transparent 70%),
-      var(--bg);
-    border-top: 1px solid var(--border);
-  }
-
-  .hero-content {
-    max-width: 640px;
-    margin: 0 auto;
+    gap: 1.25rem;
   }
 
   .hero-logo {
-    width: clamp(100px, 16vw, 150px);
+    width: clamp(58px, 8vw, 90px);
     height: auto;
-    margin-bottom: 0.75rem;
-    filter: drop-shadow(0 0 40px rgba(245,192,0,0.3));
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 28px rgba(245,192,0,0.35));
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
   }
 
   .hero-title {
     color: var(--gold);
-    margin-bottom: 0.5rem;
+    margin: 0;
+    line-height: 1.1;
   }
 
   .hero-tagline {
     font-family: 'Marcellus SC', serif;
     font-size: clamp(1rem, 2.5vw, 1.4rem);
     color: var(--text-dim);
-    margin-bottom: 0;
+    margin: 0;
     letter-spacing: 0.06em;
   }
 
   /* ─── Products ───────────────────────────────────────────── */
   .products {
-    padding: 0.75rem 0 5rem;
+    padding: 0 0 5rem;
   }
 
   .product-card {
@@ -344,20 +385,10 @@ const t = useTranslations(lang);
     z-index: 1;
   }
 
-  .fa-heroes {
-    display: flex;
-    gap: 2.2rem;
-    font-size: 2.86rem;
-  }
-
-  .fa-label {
-    font-family: 'Marcellus SC', serif;
-    font-size: 2.3rem;
-    letter-spacing: 0.12em;
-    background: linear-gradient(90deg, #f0c040, #f08040);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .fa-logo-img {
+    width: clamp(230px, 57.5%, 437px);
+    height: auto;
+    filter: drop-shadow(0 4px 24px rgba(0,0,0,0.7));
   }
 
   .card-body {
@@ -453,6 +484,60 @@ const t = useTranslations(lang);
     box-shadow: 0 5px 18px rgba(255,94,91,0.55);
   }
 
+  /* ─── What We Make ──────────────────────────────────────── */
+  .wwm {
+    padding: 3.5rem 0 4rem;
+    border-top: 1px solid var(--border);
+  }
+  .wwm-intro {
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    max-width: 780px;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+  }
+  .wwm-block {
+    max-width: 780px;
+    margin: 0 auto 2.25rem;
+    padding-bottom: 2.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .wwm-block:last-of-type {
+    border-bottom: none;
+    margin-bottom: 1.5rem;
+  }
+  .wwm-block h3 {
+    font-size: 1.25rem;
+    color: var(--gold);
+    margin: 0 0 0.9rem;
+    letter-spacing: 0.02em;
+  }
+  .wwm-block p {
+    color: var(--text-dim);
+    line-height: 1.8;
+    margin: 0 0 0.9rem;
+    font-size: 0.95rem;
+  }
+  .wwm-block p:last-child { margin-bottom: 0; }
+  .wwm-cta {
+    max-width: 780px;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+  .wwm-cta-link,
+  .wwm-inline-link {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(245,192,0,0.3);
+    transition: border-color 0.2s;
+  }
+  .wwm-cta-link:hover,
+  .wwm-inline-link:hover { border-color: var(--gold); }
+
   /* ─── Connect strip ──────────────────────────────────────── */
   .connect {
     border-top: 1px solid var(--border);
@@ -522,8 +607,7 @@ const t = useTranslations(lang);
 
   @media (max-width: 640px) {
     .hero {
-      min-height: unset;
-      padding: 2.5rem 1.5rem 1.5rem;
+      padding: 2rem 0;
     }
 
     .board-games-row {

@@ -2,6 +2,16 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "astro",
+  "rewrites": [
+    {
+      "source": "/video-games/fantasy-arena/play",
+      "destination": "https://cappgames-fantasy-arena.vercel.app/"
+    },
+    {
+      "source": "/video-games/fantasy-arena/play/:path*",
+      "destination": "https://cappgames-fantasy-arena.vercel.app/:path*"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
